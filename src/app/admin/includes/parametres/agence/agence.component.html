@@ -1,0 +1,494 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer">Paramètres </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active" style="cursor: pointer">
+                Agence
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <!-- debut settings-menu-links -->
+      <app-parametre-menu-link ag_actif="active"></app-parametre-menu-link>
+      <!-- fin settings-menu-links -->
+
+      <!-- laaa -->
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="email-content">
+            <div class="table-responsive">
+              <table class="table table-inbox table-hover">
+                <tbody>
+                  <tr
+                    class="unread clickable-row"
+                    data-href="mail-view.html"
+                    *ngFor="let item of tab_liste_agence; let idx = index"
+                  >
+                    <!--       <td>
+                      <div class="top-check">
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" />
+                        </div>
+                      </div>
+                    </td> -->
+                    <td>
+                      <span class="mail-important"
+                        ><i class="fas fa-star starred"></i
+                      ></span>
+                    </td>
+                    <td class="name">
+                      <div class="email-img-blk">
+                        <!-- <div class="email-img">
+                          <img
+                            src="assets/img/profiles/avatar-03.jpg"
+                            alt="img"
+                          />
+                        </div> -->
+                        <div class="send-user">
+                          <h4>
+                            {{ item["AG_RAISONSOCIAL"] }}
+                            <span class="email-market">{{
+                              item["AG_ADRESSEGEOGRAPHIQUE"]
+                            }}</span>
+                          </h4>
+                          <p>{{ item["AG_TELEPHONE"] }}</p>
+                          <p>{{ item["AG_EMAIL"] }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td></td>
+                    <td class="mail-date" style="text-align: center">
+                      <ul class="nav" style="text-align: center">
+                        <!--  <li>
+                          <a href="javascript:;"
+                            ><img
+                              src="assets/img/icons/tag-icon-04.svg"
+                              title="Voir plus d'information"
+                              alt="img"
+                          /></a>
+                        </li> -->
+                        <!-- &#160; &#160; -->
+                        <li (click)="AllerAModifierAgence(item)">
+                          <a href="javascript:;"
+                            ><img
+                              src="assets/img/icons/refresh-icon.svg"
+                              title="Modifier"
+                              alt="img"
+                          /></a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- laaa -->
+    </div>
+    <!-- /Page Content -->
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          class="modal-title"
+          id="myCenterModalLabel"
+          style="font-size: small"
+        >
+          #Pour renseigner plusieurs email ou plusieurs contact, separez-les par
+          <strong>/</strong> <br />
+          #Vous ne pouvez renseigner que 5 à la fois
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>{{ "param_details_agence" | translate }}</h4>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_code_agence" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idCodeAgence"
+                          name="nameCodeAgence"
+                          [(ngModel)]="model_agence[0]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_raison_sociale" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idRaisonSociale"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          name="nameRaisonSociale"
+                          [(ngModel)]="model_agence[1]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_date_de_creation" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDateCreation"
+                          name="nameDateCreation"
+                          [(ngModel)]="model_agence[2]['valeur']"
+                          (input)="
+                            _toolsService._saisieAutoDate('idDateCreation')
+                          "
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_num_agrement" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idNumAgrement"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          name="nameNumAgrement"
+                          [(ngModel)]="model_agence[3]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_gerant" | translate }} </label>
+                        <select
+                          class="form-control select"
+                          id="idGerant"
+                          name="nameGerant"
+                          [(ngModel)]="model_agence[4]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_gerant;
+                              let ind = index
+                            "
+                            value="{{ item['OP_CODEOPERATEUR'] }}"
+                          >
+                            {{ item["OP_NOMPRENOM"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_boite_postale" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idBoitePostale"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          name="nameBoitePostale"
+                          [(ngModel)]="model_agence[5]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_pays" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          id="idPays"
+                          name="namePays"
+                          [(ngModel)]="model_agence[6]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="let item of tab_liste_pays; let ind = index"
+                            value="{{ item['PY_CODEPAYS'] }}"
+                          >
+                            {{ item["PY_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_ville" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          id="idVille"
+                          name="nameVille"
+                          [(ngModel)]="model_agence[7]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_ville;
+                              let ind = index
+                            "
+                            value="{{ item['VL_CODEVILLE'] }}"
+                          >
+                            {{ item["VL_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-12">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_adresse_geo" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idAdresseGeographique"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          name="nameAdresseGeographique"
+                          [(ngModel)]="model_agence[8]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_contact_emet" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="idContactEmeteur"
+                          name="nameContactEmeteur"
+                          [(ngModel)]="model_agence[17]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_email_emet" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="email"
+                          id="idEmailEmeteur"
+                          name="nameEmailEmeteur"
+                          [(ngModel)]="model_agence[16]['valeur']"
+                          (change)="
+                            _toolsService._emailtoLowerCase(model_agence, '16')
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_mdp" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="password"
+                          placeholder=""
+                          id="idMotDePasse"
+                          name="nameMotDePasse"
+                          [(ngModel)]="model_agence[12]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_repeter_mdp" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="password"
+                          placeholder=""
+                          id="idRepeterMotDePasse"
+                          name="nameRepeterMotDePasse"
+                          [(ngModel)]="model_agence[13]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-12">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_contact_desti" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Séparez par / pour renseigner plusieurs à la fois [5 numéros autorisé à la fois]"
+                          id="idContact"
+                          name="nameContact"
+                          (input)="
+                            _toolsService._limiteDeSaisie(
+                              $event,
+                              9,
+                              model_agence,
+                              5
+                            )
+                          "
+                          [(ngModel)]="model_agence[9]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-12">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_email_desti" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Séparez par / pour rensigner plusieurs à la fois [5 emails autorisé à la fois]"
+                          id="idEmail"
+                          name="nameEmail"
+                          [(ngModel)]="model_agence[11]['valeur']"
+                          (input)="
+                            _toolsService._limiteDeSaisie(
+                              $event,
+                              11,
+                              model_agence,
+                              5
+                            )
+                          "
+                          (change)="
+                            _toolsService._emailtoLowerCase(model_agence, '11')
+                          "
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="
+                            EnregistrerAgence(
+                              model_agence,
+                              [0, 1, 2, 5, 6, 7, 8, 9, 16, 17, 12, 13]
+                            )
+                          "
+                        >
+                          {{ "btn_enregistrer" | translate }}
+                        </button>
+                        <button
+                          class="btn btn-primary cancel-form"
+                          (click)="AnnulerAction()"
+                        >
+                          {{ "btn_annuler" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

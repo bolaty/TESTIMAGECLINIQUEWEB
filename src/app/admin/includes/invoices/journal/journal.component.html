@@ -1,0 +1,136 @@
+&#160; &#160; &#160;&#160; &#160; &#160;
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="Telecharger()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','Journal')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','Journal')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+  <!-- en-tete de page -->
+  <app-entete-invoice
+    title="JOURNAL DU {{
+      session_journal_de_caisse[0][2][0]['objetEnvoi']['Objet'][0]['DATEDEBUT']
+    }} AU {{
+      session_journal_de_caisse[0][2][0]['objetEnvoi']['Objet'][0]['DATEFIN']
+    }}"
+    [show_agent_immo_agree]="false"
+  ></app-entete-invoice>
+  
+  <!-- <div class="card-body"> -->
+  <!-- <div class="d-flex justify-content-between flex-wrap"> -->
+  <!-- <div class="my-3 me-3"> -->
+  <div class="content-2" #contentBrouillard id="pageGlobale">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12 my-3">
+        AGENCE : {{ session_journal_de_caisse[0][2][0]?.AG_RAISONSOCIAL }}
+      </div>
+      <div
+        class="col-12"
+        style="margin-top: 10px"
+        *ngFor="let item of session_journal_de_caisse; let id = index"
+      >
+        <!-- <div
+            class="bold-container operation long-table"
+            style="text-align: center; margin-top: 10px"
+          > -->
+        <div style="text-align: center" *ngIf="ShowDate(item[0], id)">
+          <label for="my_label" style="font-size: medium"
+            >Journée du:
+            {{ item[0] }}
+          </label>
+        </div>
+
+        <table>
+          <!-- <tbody> -->
+          <tr>
+            <th colspan="10">
+              <!-- <div class="py-2 justify-content-between d-flex"> -->
+              <div class="row">
+                <div class="col" style="text-align: start">
+                  Opérateur:
+                  {{ item[2][0]?.OP_NOMPRENOM }}
+                </div>
+
+                <div class="col" style="text-align: end">
+                  N° pièce:
+                  {{ item[1] }}
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr style="text-align: center">
+            <!--<th>Date</th>
+            <th style="width: 300px">N° Pièce</th>
+            <th>N° Compte tiers</th>
+            <th>Libellé mouvement</th>
+            <th style="width: 100px">Réf. pièce</th>
+            <th>Débit</th>
+            <th>Crédit</th>
+            <th>Solde</th>-->
+
+            <th>DATE PIECE</th>
+            <th>HEURE</th>
+            <th style="width: 300px">N° COMPTE</th>
+            <th>TELEPHONE</th>
+            <th>N° COMPTE TIERS</th>
+            <th>MODE DE REGLEMENT</th>
+            <th style="width: 100px">REFERENCE</th>
+            <th style="text-align: center">LIBELLE MOUVEMENT</th>
+            <th style="text-align: center">DEBIT</th>
+            <th style="text-align: center">CREDIT</th>
+          </tr>
+          <tr *ngFor="let item2 of item[2]; let id2 = index">
+            <td>{{ item2?.MC_DATEPIECE }}</td>
+            <td>{{ item2?.MC_HEUREACTION }}</td>
+            <td>{{ item2?.PL_NUMCOMPTE }}</td>
+            <td>{{ item2?.PT_CONTACT }}</td>
+            <td>{{ item2?.PT_CODEPATIENT }}</td>
+            <td>{{ item2?.MR_LIBELLE }}</td>
+            <td>{{ item2?.MC_REFERENCEPIECE }}</td>
+            <td style="text-align: start">{{ item2?.MC_LIBELLEOPERATION }}</td>
+            <td>{{ item2?.MC_MONTANTDEBIT?.toLocaleString() }}</td>
+            <td>{{ item2?.MC_MONTANTCREDIT?.toLocaleString() }}</td>
+          </tr>
+          <tr>
+            <th colspan="8" style="text-align: right">Total</th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTDEBIT"]?.toLocaleString() }} -->
+              {{ item[3]["total_montant_debit"]?.toLocaleString() }}
+            </th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTCREDIT"]?.toLocaleString() }} -->
+              {{ item[3]["total_montant_credit"]?.toLocaleString() }}
+            </th>
+          </tr>
+
+          <!-- </tbody> -->
+        </table>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <!-- pied de page -->
+  <app-pied-de-page-invoice></app-pied-de-page-invoice>
+  <!-- pied de page -->
+</div>

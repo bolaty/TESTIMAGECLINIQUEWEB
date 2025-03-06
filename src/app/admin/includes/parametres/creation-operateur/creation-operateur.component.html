@@ -1,0 +1,647 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "param_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                (click)="AllerA('liste')"
+                style="cursor: pointer"
+              >
+                {{ "param_filigranne_2" | translate }}
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                *ngIf="ecran_affiche == 'liste'"
+              >
+                {{ "param_filigranne_3" | translate }}
+              </li>
+              <li
+                class="breadcrumb-item active"
+                *ngIf="ecran_affiche == 'ajout'"
+              >
+                {{ "param_filigranne_11" | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <!-- debut settings-menu-links -->
+      <app-parametre-menu-link op_actif="active"></app-parametre-menu-link>
+      <!-- fin settings-menu-links -->
+
+      <div class="row" *ngIf="ecran_affiche == 'liste'">
+        <div class="col-sm-12">
+          <div class="card card-table show-entire">
+            <div class="card-body">
+              <!-- Table Header -->
+              <div class="page-table-header mb-2">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="doctor-table-blk">
+                      <h3>{{ "param_liste_des_operateurs" | translate }}</h3>
+                      <div class="doctor-search-blk">
+                        <div class="top-nav-search table-search-blk">
+                          <form>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="recherch"
+                              name="recher"
+                              [(ngModel)]="searchText"
+                              (ngModelChange)="applyFilter()"
+                              placeholder="{{
+                                'param_rechercher_ici' | translate
+                              }}"
+                            />
+                            <a class="btn"
+                              ><img
+                                src="assets/img/icons/search-normal.svg"
+                                alt=""
+                            /></a>
+                          </form>
+                        </div>
+                        <div class="add-group">
+                          <a
+                            style="cursor: pointer"
+                            (click)="AllerA('ajout')"
+                            class="btn btn-primary add-pluss ms-2"
+                            title="Ajouter un opérateur"
+                            ><img src="assets/img/icons/plus.svg" alt=""
+                          /></a>
+                          <!--  <a
+                            href="javascript:;"
+                            class="btn btn-primary doctor-refresh ms-2"
+                            ><img src="assets/img/icons/re-fresh.svg" alt=""
+                          /></a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto text-end float-end ms-auto download-grp">
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-03.svg" alt=""
+                    /></a>
+                    <a href="javascript:;"
+                      ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <!-- /Table Header -->
+
+              <div class="table-responsive">
+                <table
+                  class="table border-0 custom-table comman-table datatable mb-0"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="form-check check-tables">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="something"
+                          />
+                        </div>
+                      </th>
+                      <th>Nom et prénoms</th>
+                      <th>Service</th>
+                      <th>contact</th>
+                      <th>Email</th>
+                      <th>Date de naissance</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let item of filteredOperateurs; let index = index"
+                    >
+                      <td>
+                        <div class="form-check check-tables">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="something"
+                          />
+                        </div>
+                      </td>
+                      <td class="profile-image">
+                        <a style="cursor: pointer"
+                          ><img
+                            width="28"
+                            height="28"
+                            src="assets/img/profiles/avatar-01.jpg"
+                            class="rounded-circle m-r-5"
+                            alt=""
+                          />
+                          {{ item.OP_NOMPRENOM }}</a
+                        >
+                      </td>
+                      <td>{{ item.SR_LIBELLE }}</td>
+                      <td>{{ item.OP_TELEPHONE }}</td>
+                      <td>{{ item.OP_EMAIL }}</td>
+                      <td>{{ item.OP_DATESAISIE }}</td>
+                      <td class="text-end">
+                        <div
+                          class="dropdown dropdown-action"
+                          (click)="saveInfo(item)"
+                        >
+                          <a
+                            href="#"
+                            (click)="onMenuClick($event)"
+                            class="action-icon dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            ><i class="fa fa-ellipsis-v"></i
+                          ></a>
+                          <div class="dropdown-menu dropdown-menu-end">
+                            <!--  <a class="dropdown-item" href="edit-patient.html"
+                              ><i class="fa-solid fa-pen-to-square m-r-5"></i>
+                              Edit</a
+                            >  data-bs-toggle="modal"
+                              data-bs-target="#delete_patient"-->
+                            <a
+                              class="dropdown-item"
+                              (click)="AllerA('modif')"
+                              (click)="onMenuClick($event)"
+                              ><i class="fa fa-pen-to-square m-r-5"></i>
+                              Modification</a
+                            >
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="row"
+        *ngIf="ecran_affiche == 'ajout' || ecran_affiche == 'modif'"
+      >
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-heading">
+                      <h4>{{ "param_details_operateur" | translate }}</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_nom_et_prenoms" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idNomPrenoms"
+                        style="text-transform: uppercase"
+                        autocapitalize="characters"
+                        inputmode="latin"
+                        name="nameNomPrenoms"
+                        [(ngModel)]="model_operateur[0]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <!--  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_prenoms" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idPrenoms"
+                        name="namePrenoms"
+                        [(ngModel)]="model_operateur[1]['valeur']"
+                      />
+                    </div>
+                  </div> -->
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_contact" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idContact"
+                        name="nameContact"
+                        [(ngModel)]="model_operateur[2]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_email" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        class="form-control"
+                        type="email"
+                        placeholder=""
+                        id="idEmail"
+                        name="nameEmail"
+                        [(ngModel)]="model_operateur[3]['valeur']"
+                        (change)="
+                          _toolsService._emailtoLowerCase(model_operateur, '3')
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_service" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <select
+                        class="form-control select"
+                        id="idService"
+                        name="nameService"
+                        [(ngModel)]="model_operateur[4]['valeur']"
+                      >
+                        <option>Faites un choix</option>
+                        <option
+                          *ngFor="let item of ComboService; let index = index"
+                          value="{{ item.SR_CODESERVICE }}"
+                        >
+                          {{ item.SR_LIBELLE }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <!--<div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-top-form">
+                      <label class="local-top"
+                        >{{ "param_avatar" | translate }}
+                      </label>
+                      <div class="settings-btn upload-files-avator">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="image"
+                          id="file"
+                          onchange="loadFile(event)"
+                          class="hide-input"
+                          [(ngModel)]="model_operateur[5]['valeur']"
+                        />
+                        <label for="file" class="upload">Choose File</label>
+                      </div>
+                    </div>
+                  </div>-->
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_profil" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <select
+                        class="form-control select"
+                        id="idProfil"
+                        name="nameProfil"
+                        [(ngModel)]="model_operateur[7]['valeur']"
+                      >
+                        <option>Faites un choix</option>
+                        <option
+                          *ngFor="let item of ComboProfil; let index = index"
+                          value="{{ item.PO_CODEPROFIL }}"
+                        >
+                          {{ item.PO_LIBELLE }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block select-gender">
+                      <label class="gen-label"
+                        >{{ "param_statut" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input mt-0"
+                            (click)="ChoixDuStatut('O')"
+                          />Actif
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input mt-0"
+                            (click)="ChoixDuStatut('N')"
+                          />Inactif
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_caisse" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('8')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteCaisse"
+                        name="nameCompteCaisse"
+                        [(ngModel)]="model_operateur[8]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_coffre" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('9')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteCoffre"
+                        name="nameCompteCoffre"
+                        [(ngModel)]="model_operateur[9]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_sortie_prov" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('10')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idSortieProv"
+                        name="nameSortieProv"
+                        [(ngModel)]="model_operateur[10]['valeur']"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_wave" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('11')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteWave"
+                        name="nameCompteWave"
+                        [(ngModel)]="model_operateur[11]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_mtn" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('12')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteMtn"
+                        name="nameCompteMtn"
+                        [(ngModel)]="model_operateur[12]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_orange" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('13')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteOrange"
+                        name="nameCompteOrange"
+                        [(ngModel)]="model_operateur[13]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_moov" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('14')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteMoov"
+                        name="nameCompteMoov"
+                        [(ngModel)]="model_operateur[14]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_cheque" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('15')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteCheque"
+                        name="nameCompteCheque"
+                        [(ngModel)]="model_operateur[15]['valeur']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_cpte_virement" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        (dblclick)="selectCompte('16')"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCompteVirement"
+                        name="nameCompteVirement"
+                        [(ngModel)]="model_operateur[16]['valeur']"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="doctor-submit text-end">
+                      <button
+                        class="btn btn-primary submit-form me-2"
+                        (click)="
+                          EnregistrerOperateur(
+                            model_operateur,
+                            [0, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                          )
+                        "
+                      >
+                        {{ "btn_enregistrer" | translate }}
+                      </button>
+                      <button
+                        class="btn btn-primary cancel-form"
+                        (click)="AnnulerAction()"
+                      >
+                        {{ "btn_annuler" | translate }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content -->
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          class="modal-title"
+          id="myCenterModalLabel"
+          style="font-size: small"
+        >
+          Fermer
+          <strong>/</strong>
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">N° compte</th>
+                        <th scope="col">Libellé</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let ligne of ComboNumCompte; let index = index"
+                        (click)="SelectionLigneCompte(index)"
+                      >
+                        <td>{{ ligne.PL_NUMCOMPTE }}</td>
+                        <td>{{ ligne.PL_LIBELLE }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -1,0 +1,289 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "param_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                (click)="AllerA('liste')"
+                style="cursor: pointer"
+              >
+                Service
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                *ngIf="ecran_affiche == 'liste'"
+              >
+                {{ "param_filigranne_3" | translate }}
+              </li>
+              <li
+                class="breadcrumb-item active"
+                *ngIf="ecran_affiche == 'ajout'"
+              >
+                Ajout service
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <!-- debut settings-menu-links -->
+      <app-parametre-menu-link service_actif="active"></app-parametre-menu-link>
+      <!-- fin settings-menu-links -->
+
+      <div class="row" *ngIf="ecran_affiche == 'liste'">
+        <div class="col-sm-12">
+          <div class="card card-table show-entire">
+            <div class="card-body">
+              <!-- Table Header -->
+              <div class="page-table-header mb-2">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="doctor-table-blk">
+                      <h3>{{ "param_liste_des_services" | translate }}</h3>
+                      <div class="doctor-search-blk">
+                        <div class="top-nav-search table-search-blk">
+                          <form>
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Rechercher ici"
+                            />
+                            <a class="btn"
+                              ><img
+                                src="assets/img/icons/search-normal.svg"
+                                alt=""
+                            /></a>
+                          </form>
+                        </div>
+                        <div class="add-group">
+                          <a
+                            style="cursor: pointer"
+                            (click)="AllerA('ajout')"
+                            class="btn btn-primary add-pluss ms-2"
+                            title="Ajouter un service"
+                            ><img src="assets/img/icons/plus.svg" alt=""
+                          /></a>
+                          <!-- <a
+                            href="javascript:;"
+                            class="btn btn-primary doctor-refresh ms-2"
+                            ><img src="assets/img/icons/re-fresh.svg" alt=""
+                          /></a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto text-end float-end ms-auto download-grp">
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-03.svg" alt=""
+                    /></a>
+                    <a href="javascript:;"
+                      ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <!-- /Table Header -->
+
+              <div class="table-responsive">
+                <table
+                  class="table border-0 custom-table comman-table datatable mb-0"
+                >
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Libellé</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Otolaryngology</td>
+                      <td>dfgdfgfggfg</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="ecran_affiche == 'ajout'">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-heading">
+                      <h4>{{ "param_details_du_service" | translate }}</h4>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label>{{ "Code" | translate }}</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idCode"
+                        name="nameCode"
+                        [(ngModel)]="model_service[0]['valeur']"
+                        [readOnly]="model_service[0]['readOnly']"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-6">
+                    <div class="input-block local-forms">
+                      <label
+                        >{{ "param_nom_du_service" | translate }}
+                        <span class="login-danger">*</span></label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                        id="idNomService"
+                        style="text-transform: uppercase"
+                        autocapitalize="characters"
+                        inputmode="latin"
+                        name="nameNomService"
+                        [(ngModel)]="model_service[1]['valeur']"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="doctor-submit text-end">
+                      <button
+                        class="btn btn-primary submit-form me-2"
+                        (click)="EnregistrerService(model_service, [1])"
+                      >
+                        {{ "btn_enregistrer" | translate }}
+                      </button>
+                      <button
+                        class="btn btn-primary cancel-form"
+                        (click)="AnnulerAction()"
+                      >
+                        {{ "btn_annuler" | translate }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content -->
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!-- Danger Alert Modal -->
+<div
+  id="danger-alert-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content modal-filled bg-danger">
+      <div class="modal-body p-4">
+        <div class="text-center">
+          <i class="dripicons-wrong h1 text-white"></i>
+          <h4 class="mt-2 text-white">Oh snap!</h4>
+          <p class="mt-3 text-white">
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam.
+          </p>
+          <button
+            type="button"
+            class="btn btn-light my-2"
+            data-bs-dismiss="modal"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h5>Overflowing text to show scroll behavior</h5>
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+        <p>
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+        </p>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

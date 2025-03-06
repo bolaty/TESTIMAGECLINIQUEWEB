@@ -1,0 +1,204 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+      <ul>
+        <!-- <li class="menu-title">Main</li> -->
+        <li id="idDashboard">
+          <a
+            class="active"
+            class="item-menu"
+            (click)="MenuRouter('mod_dashboard', 'idDashboard')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-01.svg" alt=""
+            /></span>
+            <span>{{ "mdg_tableau_de_bord" | translate }}</span></a
+          >
+        </li>
+        <!--<li id="idPatient">
+          <a
+            class="active"
+            class="item-menu"
+            (click)="MenuRouter('mod_patient', 'idPatient')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-03.svg" alt=""
+            /></span>
+            <span>{{ "mdg_patient" | translate }} </span></a
+          >
+        </li>-->
+        <li id="idCreationPatient">
+          <a
+            class="active"
+            class="item-menu"
+            (click)="MenuRouter('mod_CreationPatient', 'idCreationPatient')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-02.svg" alt=""
+            /></span>
+            <span>{{ "mdg_CreationPatient" | translate }} </span></a
+          >
+        </li>
+        <li class="submenu" id="idPatientS">
+          <a
+            class="item-menu"
+            [ngClass]="{ subdrop: isSubmenuOpenPatient }"
+            (click)="MenuRouter('mod_patientAnnul', 'idPatient')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-03.svg" alt=""
+            /></span>
+            <span>{{ "mdg_patient" | translate }} </span>
+            <span class="menu-arrow"></span
+          ></a>
+          <ul [ngStyle]="{ display: isSubmenuOpenPatient ? 'block' : 'none' }">
+            <!-- <ul style="display: block"> -->
+            <li id="idPatient">
+              <a
+                style="cursor: pointer"
+                (click)="MenuRouter('mod_patient', 'idPatient')"
+                >{{ "mdg_patient" | translate }}</a
+              >
+            </li>
+            <li id="idpatientAnnul">
+              <a
+                style="cursor: pointer"
+                (click)="MenuRoutersimple('mod_patientAnnuler')"
+                >{{ "mdg_patient_annulee" | translate }}</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="submenu" id="idGuichet">
+          <a
+            class="item-menu"
+            [ngClass]="{ subdrop: isSubmenuOpenGuichet }"
+            (click)="MenuRouter('mod_Guichet', 'idGuichet')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-07.svg" alt=""
+            /></span>
+            <span>{{ "mdg_Guichet" | translate }} </span>
+            <span class="menu-arrow"></span
+          ></a>
+          <ul [ngStyle]="{ display: isSubmenuOpenGuichet ? 'block' : 'none' }">
+            <!-- <ul style="display: block"> -->
+            <li id="idGuichetOperation">
+              <a
+                style="cursor: pointer"
+                (click)="SousMenuRouter('mod_Guichet', 'idGuichetOperation')"
+                >{{ "mdg_GuichetOperation" | translate }}</a
+              >
+            </li>
+            <li id="idComptabiliteOpCaisse">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter(
+                    'mod_guichet_op_caisse',
+                    'idComptabiliteOpCaisse'
+                  )
+                "
+                >{{ "mdg_comptabilite_op_de_caisse" | translate }}</a
+              >
+            </li>
+            <li id="idComptabiliteReedition">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter(
+                    'mod_guichet_reedition',
+                    'idComptabiliteReedition'
+                  )
+                "
+                >{{ "mdg_comptabilite_reedition" | translate }}</a
+              >
+            </li>
+            <li id="idComptabiliteArreterCaisse">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter(
+                    'mod_guichet_arreter_caisse',
+                    'idComptabiliteArreterCaisse'
+                  )
+                "
+                >{{ "mdg_comptabilite_arreter_caisse" | translate }}</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="submenu" id="idComptabilite">
+          <a
+            class="item-menu"
+            [ngClass]="{ subdrop: isSubmenuOpen }"
+            (click)="MenuRouter('mod_comptabilite', 'idComptabilite')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-07.svg" alt=""
+            /></span>
+            <span>{{ "mdg_comptabilite" | translate }} </span>
+            <span class="menu-arrow"></span
+          ></a>
+          <ul [ngStyle]="{ display: isSubmenuOpen ? 'block' : 'none' }">
+            <!-- <ul style="display: block"> -->
+            <li id="idComptabiliteOdOrd">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter('mod_compta_od_ord', 'idComptabiliteOdOrd')
+                "
+                >{{ "mdg_comptabilite_od_ord" | translate }}</a
+              >
+            </li>
+            <li id="idComptabiliteOdAuto">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter('mod_compta_od_auto', 'idComptabiliteOdAuto')
+                "
+                >{{ "mdg_comptabilite_od_auto" | translate }}</a
+              >
+            </li>
+            <li id="idComptabiliteExtourne">
+              <a
+                style="cursor: pointer"
+                (click)="
+                  SousMenuRouter(
+                    'mod_compta_Extourne',
+                    'idComptabiliteExtourne'
+                  )
+                "
+                >{{ "mdg_comptabilite_extourne" | translate }}</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li id="idTransmissionRapport">
+          <a
+            class="active"
+            class="item-menu"
+            (click)="MenuRouter('mod_trans_rapport', 'idTransmissionRapport')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-12.svg" alt=""
+            /></span>
+            <span>{{ "mdg_transmission_de_rapport" | translate }} </span></a
+          >
+        </li>
+        <li id="idEdition">
+          <a
+            class="active"
+            class="item-menu"
+            (click)="MenuRouter('mod_edition', 'idEdition')"
+            ><span class="menu-side"
+              ><img src="assets/img/icons/menu-icon-15.svg" alt=""
+            /></span>
+            <span>{{ "mdg_edition" | translate }} </span></a
+          >
+        </li>
+      </ul>
+      <!--    <div class="logout-btn" id="idLogout">
+        <a class="item-menu" (click)="MenuRouter('logout', 'idLogout')"
+          ><span class="menu-side"
+            ><img src="assets/img/icons/logout.svg" alt=""
+          /></span>
+          <span>{{ "mdg_deconnexion" | translate }}</span></a
+        >
+      </div> -->
+    </div>
+  </div>
+</div>

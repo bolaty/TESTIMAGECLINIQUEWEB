@@ -1,0 +1,93 @@
+$primary-color: #9fa1a1;
+$text-color: #454646;
+
+body {
+  width: 952px;
+  padding: 17px;
+  font-family: "Courier Prime", monospace;
+  font-size: 16px;
+  color: $text-color;
+  margin: 0px;
+}
+
+.container {
+  padding: 7px;
+  font-family: "Courier Prime", monospace;
+  font-size: 16px;
+  color: $text-color;
+  // width: 912px;
+  margin: 0px;
+}
+
+.visa {
+  border: 0.1px solid #b4b3b3;
+  text-align: center;
+  height: 65px;
+}
+
+table {
+  width: 100%;
+  // margin-bottom: 1px;
+  page-break-inside: avoid;
+  tr {
+    td:first-of-type,
+    td:nth-of-type(3),
+    td:nth-of-type(7),
+    td:nth-of-type(8) {
+      width: 70px !important;
+    }
+    td:nth-of-type(2),
+    td:nth-of-type(4),
+    td:nth-of-type(5) {
+      width: 320px !important;
+    }
+    td,
+    th {
+      border-collapse: collapse !important;
+      border: 0.1px solid #b4b3b3 !important;
+      font-size: 16px;
+      text-align: center;
+      padding-top: 7px;
+      &.left {
+        text-align: left;
+      }
+    }
+    th {
+      font-weight: bold;
+    }
+  }
+}
+
+hr {
+  border: none; /* Supprime la bordure par défaut */
+  border-top: 2px dashed #000; /* Définit une bordure en tirets */
+  margin: 7px 0; /* Espacement autour de la balise */
+}
+
+@media print {
+  .hide-on-print {
+    display: none !important;
+  }
+  .container {
+    width: 100% !important;
+  }
+  .table-container {
+    width: 100% !important;
+  }
+
+  body {
+    overflow: visible !important; /* Désactive l'ascenseur */
+    height: auto !important; /* Assure que la hauteur du body ne force pas un ascenseur */
+  }
+  html {
+    overflow: visible !important;
+  }
+
+  /* .table-container th {
+    background-color: #2e37a4 !important;
+    color: white !important;
+  }
+  .total-row {
+    background-color: #f4f5fa !important;
+  } */
+}

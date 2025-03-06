@@ -1,0 +1,158 @@
+&#160; &#160; &#160;&#160; &#160; &#160;
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="Telecharger()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','GrandLivre')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','GrandLivre')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+  <!-- en-tete de page -->
+  <app-entete-invoice
+    title="GRAND LIVRE DU {{
+      session_grndlivre_de_caisse[0][2][0]['objetEnvoi']['Objet'][0][
+        'DATEDEBUT'
+      ]
+    }} AU {{
+      session_grndlivre_de_caisse[0][2][0]['objetEnvoi']['Objet'][0]['DATEFIN']
+    }}"
+    [show_agent_immo_agree]="false"
+  ></app-entete-invoice>
+  <!-- en-tete de page -->
+  <!--  <div class="col-12">
+    <div class="doctor-submit text-end">
+      <button
+        class="btn btn-primary submit-form me-2 hide-on-print"
+        (click)="Telecharger()"
+      >
+        Imprimer
+      </button>
+    </div>
+  </div> -->
+  <!-- <div class="card-body"> -->
+  <!-- <div class="d-flex justify-content-between flex-wrap"> -->
+  <!-- <div class="my-3 me-3"> -->
+  <div class="content-2" #contentBrouillard id="pageGlobale">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12 my-3">
+        AGENCE : {{ session_grndlivre_de_caisse[0][2][0]?.AG_RAISONSOCIAL }}
+      </div>
+      <div
+        class="col-12"
+        style="margin-top: 10px"
+        *ngFor="let item of session_grndlivre_de_caisse; let id = index"
+      >
+        <!-- <div
+            class="bold-container operation long-table"
+            style="text-align: center; margin-top: 10px"
+          > -->
+        <div style="text-align: center" *ngIf="ShowDate(item[0], id)">
+          <label for="my_label" style="font-size: medium"
+            >Journée du:
+            {{ item[0] }}
+          </label>
+        </div>
+
+        <table>
+          <!-- <tbody> -->
+          <tr>
+            <th colspan="11">
+              <!-- <div class="py-2 justify-content-between d-flex"> -->
+              <div class="row">
+                <div class="col" style="text-align: start">
+                  Compte: {{ item[1] }}
+                </div>
+                <div class="col"></div>
+                <div class="col" style="text-align: end">
+                  Solde Précédent:
+                  {{ item[2][0]?.SOLDEPRECEDENT?.toLocaleString() ?? 0 }}
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <!-- <th>Date</th>
+            <th style="width: 300px">N° Pièce</th>
+            <th>N° Compte tiers</th>
+            <th>Libellé mouvement</th>
+            <th style="width: 100px">Réf. pièce</th>
+            <th>Débit</th>
+            <th>Crédit</th>
+            <th>Solde</th>-->
+
+            <th>DATE</th>
+            <th>JO</th>
+            <th style="width: 300px">N° PIECE</th>
+            <th>N° COMPTE TIERS</th>
+            <th>MODE DE REGLEMENT</th>
+            <th>LIBELLE MOUVEMENT</th>
+            <th style="width: 100px">REFERENCE PIECE</th>
+            <th>OPERATEUR</th>
+            <th>DEBIT</th>
+            <th>CREDIT</th>
+            <th>SOLDE</th>
+          </tr>
+          <tr *ngFor="let item2 of item[2]; let id2 = index">
+            <td>{{ item2?.MC_DATEPIECE }}</td>
+            <td>{{ item2?.JO_CODEJOURNAL }}</td>
+            <td>{{ item2?.MC_NUMPIECE }}</td>
+            <td>{{ item2?.PT_CODEPATIENT }}</td>
+            <td>{{ item2?.MR_LIBELLE }}</td>
+            <td>{{ item2?.MC_LIBELLEOPERATION }}</td>
+            <td>{{ item2?.MC_REFERENCEPIECE }}</td>
+            <td>{{ item2?.OP_NOMPRENOM }}</td>
+            <td>{{ item2?.MC_MONTANTDEBIT?.toLocaleString() }}</td>
+            <td>{{ item2?.MC_MONTANTCREDIT?.toLocaleString() }}</td>
+            <td>{{ item2?.SOLDE?.toLocaleString() }}</td>
+          </tr>
+          <tr>
+            <th colspan="8" style="text-align: right">Total</th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTDEBIT"]?.toLocaleString() }} -->
+              {{ item[3]["total_montant_debit"]?.toLocaleString() }}
+            </th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTCREDIT"]?.toLocaleString() }} -->
+              {{ item[3]["total_montant_credit"]?.toLocaleString() }}
+            </th>
+            <!-- <th>{{ total_solde?.toLocaleString() }}</th> -->
+            <th>{{ item[3]["total_solde"]?.toLocaleString() }}</th>
+            <!-- <th> total_solde </th> -->
+          </tr>
+          <tr>
+            <th colspan="10" style="text-align: right">Solde final</th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTDEBIT"]?.toLocaleString() }} -->
+              {{ item[3]["solde_final"]?.toLocaleString() }}
+            </th>
+          </tr>
+          <!-- </tbody> -->
+        </table>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <!-- pied de page -->
+  <app-pied-de-page-invoice></app-pied-de-page-invoice>
+  <!-- pied de page -->
+</div>

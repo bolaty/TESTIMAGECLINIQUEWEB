@@ -1,0 +1,362 @@
+&#160; &#160; &#160;&#160; &#160; &#160;
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="Telecharger()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','BrouillardCaisse')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','BrouillardCaisse')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+  <!-- en-tete de page -->
+  <app-entete-invoice
+    title="BROUILLARD DE CAISSE DU {{
+      session_brouillard_de_caisse[0][1][0]['objetEnvoi']['Objet'][0][
+        'DATEDEBUT'
+      ]
+    }} AU {{
+      session_brouillard_de_caisse[0][1][0]['objetEnvoi']['Objet'][0]['DATEFIN']
+    }}"
+    [show_agent_immo_agree]="false"
+  ></app-entete-invoice>
+  <!-- en-tete de page -->
+  <!--   <div class="col-12">
+    <div class="doctor-submit text-end">
+      <button
+        class="btn btn-primary submit-form me-2 hide-on-print"
+        (click)="Telecharger()"
+      >
+        Imprimer
+      </button>
+    </div>
+  </div> -->
+  <!-- <div class="card-body"> -->
+  <!-- <div class="d-flex justify-content-between flex-wrap"> -->
+  <!-- <div class="my-3 me-3"> -->
+  <div class="content-2" #contentBrouillard id="pageGlobale">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <div class="col-12 my-3">
+        AGENCE : {{ session_brouillard_de_caisse[0][1][0]?.AG_RAISONSOCIAL }}
+      </div>
+      <div
+        class="col-12"
+        style="margin-top: 10px"
+        *ngFor="let item of session_brouillard_de_caisse; let id = index"
+      >
+        <!-- <div
+            class="bold-container operation long-table"
+            style="text-align: center; margin-top: 10px"
+          > -->
+        <div style="text-align: center">
+          <label for="my_label" style="font-size: medium"
+            >Journée du:
+            {{ item[0] }}
+          </label>
+        </div>
+
+        <table>
+          <!-- <tbody> -->
+          <tr>
+            <th colspan="10">
+              <!-- <div class="py-2 justify-content-between d-flex"> -->
+              <div class="row">
+                <div class="col" style="text-align: start">
+                  Compte:
+                  {{ item[1][0]?.PL_NUMCOMPTE }}
+                </div>
+                <div class="col" style="text-align: end">
+                  Solde précédent:
+                  {{
+                    item[1][0]?.SOLDEPRECEDENTOPERATION?.toLocaleString() ?? 0
+                  }}
+                </div>
+              </div>
+            </th>
+          </tr>
+          <tr style="text-align: center">
+            <th>Date</th>
+            <th style="width: 300px">N° Pièce</th>
+            <th>N° dossier</th>
+            <th>Mode de règlement</th>
+            <th style="width: 422px">Libellé mouvement</th>
+            <th style="width: 100px">Réf. pièce</th>
+            <th style="width: 200px">Opérateur</th>
+            <th style="text-align: center">Débit</th>
+            <th style="text-align: center">Crédit</th>
+            <th style="text-align: center">Solde</th>
+          </tr>
+          <tr *ngFor="let item2 of item[1]; let id2 = index">
+            <td>{{ item2?.MC_DATEPIECE }}</td>
+            <td>{{ item2?.NUMBORDEREAU }}</td>
+            <td>{{ item2?.PT_CODEPATIENT }}</td>
+            <td>{{ item2?.MR_LIBELLE }}</td>
+            <td>{{ item2?.MC_LIBELLEOPERATION }}</td>
+            <td>{{ item2?.MC_REFERENCEPIECE }}</td>
+            <td>{{ item2?.OP_NOMPRENOM }}</td>
+            <td>{{ item2?.MC_MONTANTDEBIT?.toLocaleString() }}</td>
+            <td>{{ item2?.MC_MONTANTCREDIT?.toLocaleString() }}</td>
+            <td>{{ item2?.SOLDE?.toLocaleString() }}</td>
+          </tr>
+          <tr>
+            <th colspan="7" style="text-align: right">Total</th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTDEBIT"]?.toLocaleString() }} -->
+              {{ item[2]["total_montant_debit"]?.toLocaleString() }}
+            </th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTCREDIT"]?.toLocaleString() }} -->
+              {{ item[2]["total_montant_credit"]?.toLocaleString() }}
+            </th>
+            <!-- <th>{{ item[2]["total_solde"]?.toLocaleString() }}</th> -->
+            <th></th>
+            <!-- <th> total_solde </th> -->
+          </tr>
+          <tr>
+            <th colspan="9" style="text-align: right">Solde final</th>
+            <th>
+              <!-- {{ tab_total[0][0]["MC_TOTALMONTANTDEBIT"]?.toLocaleString() }} -->
+              {{ item[2]["solde_final"]?.toLocaleString() }}
+            </th>
+          </tr>
+          <!-- </tbody> -->
+        </table>
+        <!-- </div> -->
+        <br />
+      </div>
+
+      <div class="col-12" style="margin-top: 10px">
+        <table>
+          <tr>
+            <th style="text-align: center">Compte</th>
+            <th style="text-align: center">Solde précedent</th>
+            <th style="text-align: center">Nouveau</th>
+            <th style="text-align: center">Solde actuel</th>
+            <th style="text-align: center">Nombre d'opération</th>
+          </tr>
+          <tr>
+            <td>Caisse</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTCAISSE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUCAISSE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELCAISSE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_caisse ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>Chèque</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTCHEQUE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUCHEQUE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELCHEQUE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_cheque ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>Moov</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTMOOV"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUMOOV"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELMOOV"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_moov ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>MTN</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTMTN"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUMTN"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELMTN"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_mtn ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>Orange</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTORANGE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUORANGE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELORANGE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_orange ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>Virement</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTVIREMENT"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUVIREMENT"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELVIREMENT"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_virement ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <td>Wave</td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEPRECEDENTWAVE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDENOUVEAUWAVE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{
+                session_brouillard_de_caisse[0][1][0][
+                  "SOLDEACTUELWAVE"
+                ]?.toLocaleString() ?? 0
+              }}
+            </td>
+            <td>
+              {{ nbre_wave ?? 0 }}
+            </td>
+          </tr>
+          <tr>
+            <th style="text-align: right">Total</th>
+            <th>
+              {{ total_solde_precedent?.toLocaleString() ?? 0 }}
+            </th>
+            <th>{{ total_solde_nouveau?.toLocaleString() ?? 0 }}</th>
+            <th>{{ total_solde_actuel?.toLocaleString() ?? 0 }}</th>
+            <th>{{ nbre_operation ?? 0 }}</th>
+          </tr>
+
+          <!-- </tbody> -->
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <!-- pied de page -->
+  <app-pied-de-page-invoice></app-pied-de-page-invoice>
+  <!-- pied de page -->
+</div>

@@ -1,0 +1,2808 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "edit_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active">
+                {{ "edit_filigranne_2" | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="header-title mb-4">
+                {{ "edit_edition" | translate }}
+              </h4>
+
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="tab-content" id="v-pills-tabContent">
+                    <div
+                      *ngFor="let item of tab_liste_edition; let index = index"
+                      class="tab-pane fade"
+                      [ngClass]="{ 'show active': index === id_etat_select }"
+                      [id]="'v-pills-' + item['index'] + '2'"
+                      role="tabpanel"
+                      [attr.aria-labelledby]="
+                        'v-pills-' + item['index'] + '-tab2'
+                      "
+                    >
+                      <!-- bloc liste paiement -->
+                      <div
+                        class="row"
+                        *ngIf="item['index'] === 'listepaiement'"
+                      >
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_mode_reglement" | translate
+                                        }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameModeReglement_listepaiement"
+                                        id="idModeReglement_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[0]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option>Mode de règlement 1</option>
+                                        <option>Mode de règlement 2</option>
+                                        <option>Mode de règlement 3</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_acte" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameActe_listepaiement"
+                                        id="idActe_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[1]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option>Acte 1</option>
+                                        <option>Acte 2</option>
+                                        <option>Acte 3</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_operateur" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_listepaiement"
+                                        id="idOperateur_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[2]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option>Opérateur 1</option>
+                                        <option>Opérateur 2</option>
+                                        <option>Opérateur 3</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assure" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssure_listepaiement"
+                                        id="idAssure_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[3]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option>Assuré</option>
+                                        <option>Non assuré</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assurance" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssurance_listepaiement"
+                                        id="idAssurance_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[4]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option>Assurance 1</option>
+                                        <option>Assurance 2</option>
+                                        <option>Assurance 3</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_listepaiement"
+                                        id="idDateDebut_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[29]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_listepaiement'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_listepaiement"
+                                        id="idDateFin_listepaiement"
+                                        [(ngModel)]="
+                                          model_op_edition[30]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_listepaiement'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [0, 1, 29, 30],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        class="btn btn-primary cancel-form"
+                                        (click)="AnnulerAction()"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc liste paiement -->
+
+                      <!-- bloc journal -->
+                      <div class="row" *ngIf="item['index'] === 'journal'">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_exercice" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameExercice_journal"
+                                        id="idExercice_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[5]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboExercice;
+                                            let index = index
+                                          "
+                                          value="{{ item.EX_EXERCICE }}"
+                                        >
+                                          {{ item.EX_DESCEXERCICE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periodicite" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriodicite_journal"
+                                        id="idPeriodicite_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[6]['valeur']
+                                        "
+                                        (change)="
+                                          chargementComboPeriode(
+                                            model_op_edition[6]['valeur']
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriodicite;
+                                            let index = index
+                                          "
+                                          value="{{ item.PE_CODEPERIODICITE }}"
+                                        >
+                                          {{ item.PE_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periode" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriode_journal"
+                                        id="idPeriode_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[50]['valeur']
+                                        "
+                                        (change)="ChangePeriode()"
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriode;
+                                            let index = index
+                                          "
+                                          value="{{ item.MO_CODEMOIS }}"
+                                        >
+                                          {{ item.MO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_journal"
+                                        id="idDateDebut_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[7]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_journal'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_journal"
+                                        id="idDateFin_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[8]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_journal'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_mode_reglement" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameModeReglement_journal"
+                                        id="idModeReglement_journal"
+                                        #idModeReglementjournal
+                                        [(ngModel)]="
+                                          model_op_edition[15]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboModeRglementJournal;
+                                            let index = index
+                                          "
+                                          value="{{
+                                            item.MR_CODEMODEREGLEMENT
+                                          }}"
+                                        >
+                                          {{ item.MR_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_acte" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameActe_journal"
+                                        id="idActe_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[16]['valeur']
+                                        "
+                                        multiple
+                                        #idActejournal
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboActe;
+                                            let index = index
+                                          "
+                                          value="{{ item.ACT_CODEACTE }}"
+                                        >
+                                          {{ item.ACT_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_operateur" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_journal"
+                                        id="idOperateur_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[17]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOperateur;
+                                            let index = index
+                                          "
+                                          value="{{ item.OP_CODEOPERATEUR }}"
+                                        >
+                                          {{ item.OP_NOMPRENOM }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assure" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssure_journal"
+                                        id="idAssure_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[18]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboAssure;
+                                            let index = index
+                                          "
+                                          value="{{ item.STAT_CODESTATUT }}"
+                                        >
+                                          {{ item.STAT_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assurance" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssurance_journal"
+                                        id="idAssurance_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[19]['valeur']
+                                        "
+                                        multiple
+                                        #idAssurancejournal
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboAssurance;
+                                            let index = index
+                                          "
+                                          value="{{ item.AS_CODEASSURANCE }}"
+                                        >
+                                          {{ item.AS_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_num_de_piece" | translate }}
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameNumPiece_journal"
+                                        id="idNumPiece_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[9]['valeur']
+                                        "
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_montant_debut" | translate }}
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameMontantDebut_journal"
+                                        id="idMontantDebut_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[10]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._formatageMontantAlaSaisie(
+                                            $event,
+                                            '10',
+                                            model_op_edition
+                                          )
+                                        "
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_montant_fin" | translate }}
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameMontantFin_journal"
+                                        id="idMontantFin_journal"
+                                        [(ngModel)]="
+                                          model_op_edition[11]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._formatageMontantAlaSaisie(
+                                            $event,
+                                            '11',
+                                            model_op_edition
+                                          )
+                                        "
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_journal" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="namejournal"
+                                        id="idjournal"
+                                        [(ngModel)]="
+                                          varjournal
+                                        "
+                                        multiple
+                                        #idjournals
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboJournal;
+                                            let index = index
+                                          "
+                                          value="{{ item.JO_CODEJOURNAL }}"
+                                        >
+                                          {{ item.JO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_Typeshemacomptable" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameTypeshemacomptable"
+                                        id="idTypeshemacomptable"
+                                        [(ngModel)]="
+                                         vartypeshemacomptable
+                                        "
+                                        multiple
+                                        #idTypeshemacomptables
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboTypeshemacomptable;
+                                            let index = index
+                                          "
+                                          value="{{ item.TS_CODETYPESCHEMACOMPTABLE }}"
+                                        >
+                                          {{ item.TS_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [5, 6, 7, 8, 50],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        class="btn btn-primary cancel-form"
+                                        (click)="AnnulerAction()"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc journal -->
+
+                      <!-- bloc grand livre -->
+                      <div class="row" *ngIf="item['index'] === 'grandlivre'">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_exercice" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameExercice_grandlivre"
+                                        id="idExercice_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[20]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboExercice;
+                                            let index = index
+                                          "
+                                          value="{{ item.EX_EXERCICE }}"
+                                        >
+                                          {{ item.EX_DESCEXERCICE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periodicite" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriodicite_grandlivre"
+                                        id="idPeriodicite_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[21]['valeur']
+                                        "
+                                        (change)="
+                                          chargementComboPeriode(
+                                            model_op_edition[21]['valeur']
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriodicite;
+                                            let index = index
+                                          "
+                                          value="{{ item.PE_CODEPERIODICITE }}"
+                                        >
+                                          {{ item.PE_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periode" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriode_grandlivre"
+                                        id="idPeriode_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[51]['valeur']
+                                        "
+                                        (change)="ChangePeriode()"
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriode;
+                                            let index = index
+                                          "
+                                          value="{{ item.MO_CODEMOIS }}"
+                                        >
+                                          {{ item.MO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_grandlivre"
+                                        id="idDateDebut_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[22]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_grandlivre'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_grandlivre"
+                                        id="idDateFin_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[23]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_grandlivre'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_num_compte_debut" | translate
+                                        }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameNumCompteDebut_grandlivre"
+                                        id="idNumCompteDebut_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[12]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboNumComptedebut;
+                                            let index = index
+                                          "
+                                          value="{{ item.PL_NUMCOMPTE }}"
+                                        >
+                                          {{ item.PL_NUMCOMPTE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_num_compte_fin" | translate
+                                        }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameNumCompteFin_grandlivre"
+                                        id="idNumCompteFin_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[13]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboNumComptefin;
+                                            let index = index
+                                          "
+                                          value="{{ item.PL_NUMCOMPTE }}"
+                                        >
+                                          {{ item.PL_NUMCOMPTE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-12">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_operateur" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_grandlivre"
+                                        id="idOperateur_grandlivre"
+                                        [(ngModel)]="
+                                          model_op_edition[24]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOperateur;
+                                            let index = index
+                                          "
+                                          value="{{ item.OP_CODEOPERATEUR }}"
+                                        >
+                                          {{ item.OP_NOMPRENOM }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [20, 21, 22, 23, 12, 13, 51],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc grand livre -->
+
+                      <!-- bloc balance -->
+                      <div class="row" *ngIf="item['index'] === 'balance'">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_exercice" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameExercice_balance"
+                                        id="idExercice_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[25]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboExercice;
+                                            let index = index
+                                          "
+                                          value="{{ item.EX_EXERCICE }}"
+                                        >
+                                          {{ item.EX_DESCEXERCICE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periodicite" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriodicite_balance"
+                                        id="idPeriodicite_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[26]['valeur']
+                                        "
+                                        (change)="
+                                          chargementComboPeriode(
+                                            model_op_edition[26]['valeur']
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriodicite;
+                                            let index = index
+                                          "
+                                          value="{{ item.PE_CODEPERIODICITE }}"
+                                        >
+                                          {{ item.PE_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periode" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriode_balance"
+                                        id="idPeriode_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[52]['valeur']
+                                        "
+                                        (ngModelChange)="ChangePeriode()"
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriode;
+                                            let index = index
+                                          "
+                                          value="{{ item.MO_CODEMOIS }}"
+                                        >
+                                          {{ item.MO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_balance"
+                                        id="idDateDebut_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[27]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_balance'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_balance"
+                                        id="idDateFin_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[28]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_balance'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_num_compte_debut" | translate
+                                        }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameNumCompteDebut_grandlivre"
+                                        id="idNumCompteDebut_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[65]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboNumComptedebut;
+                                            let index = index
+                                          "
+                                          value="{{ item.PL_NUMCOMPTE }}"
+                                        >
+                                          {{ item.PL_NUMCOMPTE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_num_compte_fin" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameNumCompteFin_grandlivre"
+                                        id="idNumCompteFin_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[66]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboNumComptefin;
+                                            let index = index
+                                          "
+                                          value="{{ item.PL_NUMCOMPTE }}"
+                                        >
+                                          {{ item.PL_NUMCOMPTE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-12">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_option" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameOption_balance"
+                                        id="idOption_balance"
+                                        [(ngModel)]="
+                                          model_op_edition[14]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOption;
+                                            let index = index
+                                          "
+                                          value="{{ item.OA_CODEOPTION }}"
+                                        >
+                                          {{ item.OA_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [25, 26, 27, 28, 14, 52],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc balance -->
+
+                      <!-- bloc brouillard de caisse -->
+                      <div class="row" *ngIf="item['index'] === 'brouilcaisse'">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_agence" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameAgence_brou_caisse"
+                                        id="idAgence_brou_caisse"
+                                        [(ngModel)]="
+                                          model_op_edition[31]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboAgence;
+                                            let index = index
+                                          "
+                                          value="{{ item.AG_CODEAGENCE }}"
+                                        >
+                                          {{ item.AG_RAISONSOCIAL }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_operateur" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_brou_caisse"
+                                        id="idOperateur_brou_caisse"
+                                        [(ngModel)]="
+                                          model_op_edition[32]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOperateur;
+                                            let index = index
+                                          "
+                                          value="{{ item.OP_CODEOPERATEUR }}"
+                                        >
+                                          {{ item.OP_NOMPRENOM }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-12 col-xl-12">
+                                    <div class="input-block local-forms">
+                                      <label>Type shemacomptable </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_Typeshemacomptable"
+                                        id="idOperateur_Typeshemacomptable"
+                                        [(ngModel)]="Typeshemacomptable"
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboTypeshemacomptable;
+                                            let index = index
+                                          "
+                                          value="{{
+                                            item.TS_CODETYPESCHEMACOMPTABLE
+                                          }}"
+                                        >
+                                          {{ item.TS_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_mode_reglement" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameModeReglement_brou_caisse"
+                                        id="idModeReglement_brou_caisse"
+                                        #idModeReglementbroucaisse
+                                        [(ngModel)]="
+                                          model_op_edition[62]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboModeRglement;
+                                            let index = index
+                                          "
+                                          value="{{
+                                            item.MR_CODEMODEREGLEMENT
+                                          }}"
+                                        >
+                                          {{ item.MR_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_acte" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameActe_brou_caisse"
+                                        id="idActe_brou_caisse"
+                                        [(ngModel)]="
+                                          model_op_edition[63]['valeur']
+                                        "
+                                        multiple
+                                        #idActebroucaisse
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboActe;
+                                            let index = index
+                                          "
+                                          value="{{ item.ACT_CODEACTE }}"
+                                        >
+                                          {{ item.ACT_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_brou_caisse"
+                                        id="idDateDebut_brou_caisse"
+                                        [(ngModel)]="
+                                          model_op_edition[33]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_brou_caisse"
+                                        id="idDateFin_brou_caisse"
+                                        [(ngModel)]="
+                                          model_op_edition[34]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [31, 33, 34],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc brouillard de caisse -->
+
+                      <!-- bloc point par acte -->
+                      <div class="row" *ngIf="item['index'] === 'pointparacte'">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_pt_par_acte"
+                                        id="idDateDebut_pt_par_acte"
+                                        [(ngModel)]="
+                                          model_op_edition[35]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_pt_par_acte"
+                                        id="idDateFin_pt_par_acte"
+                                        [(ngModel)]="
+                                          model_op_edition[36]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_mode_reglement" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameModeReglement_pt_par_acte"
+                                        id="idModeReglement_pt_par_acte"
+                                        #idModeReglementptparacte
+                                        [(ngModel)]="
+                                          model_op_edition[64]['valeur']
+                                        "
+                                        multiple
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboModeRglement;
+                                            let index = index
+                                          "
+                                          value="{{
+                                            item.MR_CODEMODEREGLEMENT
+                                          }}"
+                                        >
+                                          {{ item.MR_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_acte" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameActe_pt_par_acte"
+                                        id="idActe_pt_par_acte"
+                                        [(ngModel)]="
+                                          model_op_edition[37]['valeur']
+                                        "
+                                        multiple
+                                        #idActePointParActe
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboActe;
+                                            let index = index
+                                          "
+                                          value="{{ item.ACT_CODEACTE }}"
+                                        >
+                                          {{ item.ACT_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [35, 36, 37],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc point par acte -->
+
+                      <!-- bloc etat de formation charge  -->
+                      <div
+                        class="row"
+                        *ngIf="item['index'] === 'etatformcharge'"
+                      >
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_exercice" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameExercice_etat_form_charge"
+                                        id="idExercice_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[38]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboExercice;
+                                            let index = index
+                                          "
+                                          value="{{ item.EX_EXERCICE }}"
+                                        >
+                                          {{ item.EX_DESCEXERCICE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periodicite" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriodicite_etat_form_charge"
+                                        id="idPeriodicite_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[39]['valeur']
+                                        "
+                                        (change)="
+                                          chargementComboPeriode(
+                                            model_op_edition[39]['valeur']
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriodicite;
+                                            let index = index
+                                          "
+                                          value="{{ item.PE_CODEPERIODICITE }}"
+                                        >
+                                          {{ item.PE_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periode" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriode_etat_form_charge"
+                                        id="idPeriode_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[53]['valeur']
+                                        "
+                                        (change)="
+                                          TrouverLaDateDeDebut(
+                                            model_op_edition[53]['valeur'],
+                                            'charge'
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriode;
+                                            let index = index
+                                          "
+                                          value="{{ item.MO_CODEMOIS }}"
+                                        >
+                                          {{ item.MO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_etat_form_charge"
+                                        id="idDateDebut_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[40]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_etat_form_charge'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_etat_form_charge"
+                                        id="idDateFin_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[41]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_option_affichage" | translate
+                                        }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameOptionAffichage_etat_form_charge"
+                                        id="idOptionAffichage_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[42]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option>Option affichage 1</option>
+                                        <option>Option affichage 2</option>
+                                        <option>Option affichage 3</option>
+                                      </select>
+                                    </div>
+                                  </div> -->
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_option" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameOption_etat_form_charge"
+                                        id="idOption_etat_form_charge"
+                                        [(ngModel)]="
+                                          model_op_edition[43]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="let item of ComboOption"
+                                          value="{{ item['OA_CODEOPTION'] }}"
+                                        >
+                                          {{ item["OA_LIBELLE"] }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [38, 39, 40, 41, 43, 53],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc etat de formation charge  -->
+
+                      <!-- bloc etat de formation produit  -->
+                      <div
+                        class="row"
+                        *ngIf="item['index'] === 'etatformproduit'"
+                      >
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_exercice" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameExercice_etat_form_prod"
+                                        id="idExercice_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[44]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboExercice;
+                                            let index = index
+                                          "
+                                          value="{{ item.EX_EXERCICE }}"
+                                        >
+                                          {{ item.EX_DESCEXERCICE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periodicite" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriodicite_etat_form_prod"
+                                        id="idPeriodicite_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[45]['valeur']
+                                        "
+                                        (change)="
+                                          chargementComboPeriode(
+                                            model_op_edition[45]['valeur']
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriodicite;
+                                            let index = index
+                                          "
+                                          value="{{ item.PE_CODEPERIODICITE }}"
+                                        >
+                                          {{ item.PE_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_periode" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="namePeriode_etat_form_prod"
+                                        id="idPeriode_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[54]['valeur']
+                                        "
+                                        (change)="
+                                          TrouverLaDateDeDebut(
+                                            model_op_edition[54]['valeur'],
+                                            'produit'
+                                          )
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboPeriode;
+                                            let index = index
+                                          "
+                                          value="{{ item.MO_CODEMOIS }}"
+                                        >
+                                          {{ item.MO_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_etat_form_prod"
+                                        id="idDateDebut_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[46]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_etat_form_charge'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_etat_form_prod"
+                                        id="idDateFin_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[47]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_brou_caisse'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{
+                                          "edit_option_affichage" | translate
+                                        }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameOptionAffichage_etat_form_prod"
+                                        id="idOptionAffichage_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[48]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option>Option affichage 1</option>
+                                        <option>Option affichage 2</option>
+                                        <option>Option affichage 3</option>
+                                      </select>
+                                    </div>
+                                  </div> -->
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_option" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <select
+                                        class="form-control select"
+                                        name="nameOption_etat_form_prod"
+                                        id="idOption_etat_form_prod"
+                                        [(ngModel)]="
+                                          model_op_edition[49]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="let item of ComboOption"
+                                          value="{{ item['OA_CODEOPTION'] }}"
+                                        >
+                                          {{ item["OA_LIBELLE"] }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [44, 45, 46, 47, 49, 54],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        (click)="AnnulerAction()"
+                                        class="btn btn-primary cancel-form"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc etat de formation produit  -->
+
+                      <!-- bloc liste des patients -->
+                      <div
+                        class="row"
+                        *ngIf="
+                          item['index'] === 'listepatient' ||
+                          item['index'] === 'listepatients'
+                        "
+                      >
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <form>
+                                <div class="row">
+                                  <div class="col-12">
+                                    <div class="form-heading">
+                                      <h4>
+                                        {{
+                                          "edit_contenu_pour_onglet" | translate
+                                        }}
+                                        {{ item["nom"] }}
+                                      </h4>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_operateur" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameOperateur_listepatient"
+                                        id="idOperateur_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[55]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOperateur;
+                                            let index = index
+                                          "
+                                          value="{{ item.OP_CODEOPERATEUR }}"
+                                        >
+                                          {{ item.OP_NOMPRENOM }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assure" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssure_listepatient"
+                                        id="idAssure_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[56]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboAssure;
+                                            let index = index
+                                          "
+                                          value="{{ item.STAT_CODESTATUT }}"
+                                        >
+                                          {{ item.STAT_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_assurance" | translate }}
+                                        <span class="login-danger">*</span>
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameAssurance_listepatient"
+                                        id="idAssurance_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[57]['valeur']
+                                        "
+                                        multiple
+                                        #idAssurancejournal
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboAssurance;
+                                            let index = index
+                                          "
+                                          value="{{ item.AS_CODEASSURANCE }}"
+                                        >
+                                          {{ item.AS_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-12 col-md-6 col-xl-6"
+                                    *ngIf="item['index'] === 'listepatients'"
+                                  >
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_debut" | translate }}
+                                        <span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateDebut_listepatient"
+                                        id="idDateDebut_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[58]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateDebut_listepatient'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-12 col-md-6 col-xl-6"
+                                    *ngIf="item['index'] === 'listepatients'"
+                                  >
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_de_fin" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_listepatient"
+                                        id="idDateFin_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[59]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_listepatient'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="col-12 col-md-6 col-xl-6"
+                                    *ngIf="item['index'] === 'listepatient'"
+                                  >
+                                    <div
+                                      class="input-block local-forms cal-icon"
+                                    >
+                                      <label
+                                        >{{ "edit_date_Au" | translate
+                                        }}<span class="login-danger"
+                                          >*</span
+                                        ></label
+                                      >
+                                      <input
+                                        class="form-control datetimepicker"
+                                        [appDatetimepicker]="{
+                                          enableTime: false,
+                                          dateFormat: 'd/m/Y',
+                                          allowInput: true
+                                        }"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameDateFin_listepatient"
+                                        id="idDateFin_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[59]['valeur']
+                                        "
+                                        (input)="
+                                          _toolsService._saisieAutoDate(
+                                            'idDateFin_listepatient'
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_option_trie" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameComboMultiFonc_listepatient"
+                                        id="idComboMultiFonc_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[60]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of ComboOption2;
+                                            let index = index
+                                          "
+                                          value="{{ item.OA_CODEOPTION }}"
+                                        >
+                                          {{ item.OA_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_sexe" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="nameComboMultiFonc_listepatient"
+                                        id="idComboMultiFonc_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[61]['valeur']
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of tab_liste_sexe;
+                                            let index = index
+                                          "
+                                          value="{{ item.SX_CODESEXE }}"
+                                        >
+                                          {{ item.SX_LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_soldePatient" | translate }}
+                                      </label>
+                                      <select
+                                        class="form-control select"
+                                        name="namevarsoldePatient"
+                                        id="idvarsoldePatient"
+                                        [(ngModel)]="
+                                        varsoldePatient
+                                        "
+                                      >
+                                        <option value="">
+                                          Faites un choix
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let item of TAB_SOLDE;
+                                            let index = index
+                                          "
+                                          value="{{ item.CODESTATUTSOLDE }}"
+                                        >
+                                          {{ item.LIBELLE }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_nom_prenoms" | translate }}
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameNomPrenoms_listepatient"
+                                        id="idNomPrenoms_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[60]['valeur']
+                                        "
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                      <label
+                                        >{{ "edit_num_dossier" | translate }}
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder=""
+                                        name="nameNumDoc_listepatient"
+                                        id="idNumDoc_listepatient"
+                                        [(ngModel)]="
+                                          model_op_edition[61]['valeur']
+                                        "
+                                        (change)="
+                                          _toolsService._formaterNumDossier(
+                                            model_op_edition,
+                                            61
+                                          )
+                                        "
+                                        maxlength="10"
+                                      />
+                                    </div>
+                                  </div> -->
+
+                                  <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                      <button
+                                        *ngIf="
+                                          item['index'] === 'listepatients'
+                                        "
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [58, 59],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        *ngIf="item['index'] === 'listepatient'"
+                                        class="btn btn-primary submit-form me-2"
+                                        (click)="
+                                          AfficherEtat(
+                                            model_op_edition,
+                                            [59],
+                                            item['index']
+                                          )
+                                        "
+                                      >
+                                        {{ "btn_apercu" | translate }}
+                                      </button>
+                                      <button
+                                        class="btn btn-primary cancel-form"
+                                        (click)="AnnulerAction()"
+                                      >
+                                        {{ "btn_annuler" | translate }}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- bloc liste des patients -->
+                    </div>
+                  </div>
+                </div>
+                <!-- end col -->
+                <div class="col-sm-3">
+                  <div
+                    class="nav flex-column nav-pills nav-pills-tab"
+                    id="v-pills-tab2"
+                    role="tablist"
+                    aria-orientation="vertical"
+                  >
+                    <a
+                      (click)="ChoixDeLetat(item['id'], item['index'])"
+                      *ngFor="let item of tab_liste_edition; let index = index"
+                      class="nav-link mb-1"
+                      [id]="'v-pills-' + item['index'] + '-tab2'"
+                      data-bs-toggle="pill"
+                      [href]="'#v-pills-' + item['index'] + '2'"
+                      role="tab"
+                      aria-controls="'v-pills-' + item['index'] + '2'"
+                      aria-selected="true"
+                    >
+                      {{ item["nom"] }}</a
+                    >
+                  </div>
+                </div>
+                <!-- end col -->
+              </div>
+              <!-- end row-->
+            </div>
+          </div>
+          <!-- end card-->
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+  </div>
+  <!-- /Page Wrapper -->
+</div>
+<!-- /Main Wrapper -->

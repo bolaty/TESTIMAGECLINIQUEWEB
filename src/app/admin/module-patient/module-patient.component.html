@@ -1,0 +1,1874 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div *ngIf="ecran_affiche == 'liste'">
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "pati_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "pati_filigranne_2" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>
+                          {{ "pati_critere_recherche_patient" | translate }}
+                        </h4>
+                      </div>
+                      <div
+                        class="col"
+                        style="text-align: end; font-weight: bold"
+                      >
+                        {{ solde_compte_op?.toLocaleString() ?? 0 }} FCFA
+                      </div>
+                      <br /><br />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_nom" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNomSearch"
+                          id="idNomSearch"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_patient_critere[0]['valeur']"
+                          (input)="FiltrerListeDeFacture()"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_contact" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameContactSearch"
+                          id="idContactSearch"
+                          [(ngModel)]="model_patient_critere[1]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_num_dossier" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumDocSearch"
+                          id="idNumDocSearch"
+                          [(ngModel)]="model_patient_critere[5]['valeur']"
+                          (change)="
+                            _toolsService._formaterNumDossier(
+                              model_patient_critere,
+                              5
+                            )
+                          "
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_matricule" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMatriculeSearch"
+                          id="idMatriculeSearch"
+                          [(ngModel)]="model_patient_critere[6]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_montant_debut" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMtntDebutSearch"
+                          id="idMtntDebutSearch"
+                          [(ngModel)]="model_patient_critere[7]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '7',
+                              model_patient_critere
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_montant_fin" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMtntFinSearch"
+                          id="idMtntFinSearch"
+                          [(ngModel)]="model_patient_critere[8]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '8',
+                              model_patient_critere
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "pati_date_de_debut" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDateDebutSearch"
+                          name="nameDateDebutSearch"
+                          (input)="
+                            _toolsService._saisieAutoDate('idDateDebutSearch')
+                          "
+                          [(ngModel)]="model_patient_critere[2]['valeur']"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "pati_date_de_fin" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDateFinSearch"
+                          name="nameDateFinSearch"
+                          (input)="
+                            _toolsService._saisieAutoDate('idDateFinSearch')
+                          "
+                          [(ngModel)]="model_patient_critere[3]['valeur']"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_acte" | translate }} </label>
+                        <select
+                          class="form-control select"
+                          name="nameActeSearch"
+                          id="idActeSearch"
+                          [(ngModel)]="model_patient_critere[4]['valeur']"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="let item of tab_liste_acte; let ind = index"
+                            value="{{ item['ACT_CODEACTE'] }}"
+                          >
+                            {{ item["ACT_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <div class="row">
+                          <div class="col">
+                            <button
+                              type="submit"
+                              class="btn btn-primary cancel-form"
+                              (click)="
+                                ChercherLesFactures(
+                                  model_patient_critere,
+                                  [2, 3]
+                                )
+                              "
+                            >
+                              {{ "btn_rechercher" | translate }}
+                            </button>
+                          </div>
+                          <div class="col">
+                            <div class="add-group">
+                              <a
+                                style="cursor: pointer"
+                                (click)="AllerA('ajout')"
+                                class="btn btn-primary add-pluss ms-2"
+                                title="Ajouter une facture"
+                                ><img src="assets/img/icons/plus.svg" alt=""
+                              /></a>
+                              <!-- <a
+                                href="javascript:;"
+                                class="btn btn-primary doctor-refresh ms-2"
+                                ><img src="assets/img/icons/re-fresh.svg" alt=""
+                              /></a> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card card-table show-entire">
+              <div class="card-body">
+                <!-- Table Header -->
+                <div class="page-table-header mb-2">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <div class="doctor-table-blk">
+                        <h3>{{ "pati_liste_factures" | translate }}</h3>
+                      </div>
+                    </div>
+                    <div
+                      class="col-auto text-end float-end ms-auto download-grp"
+                    >
+                      <a href="javascript:;" class="me-2"
+                        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+                      /></a>
+                      <a href="javascript:;" class="me-2"
+                        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+                      /></a>
+                      <a href="javascript:;" class="me-2"
+                        ><img src="assets/img/icons/pdf-icon-03.svg" alt=""
+                      /></a>
+                      <a href="javascript:;"
+                        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+                      /></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <!--  <th>
+                          <div class="form-check check-tables">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value="something"
+                            />
+                          </div>
+                        </th> -->
+                        <th>#</th>
+                        <th>Nom et prénoms</th>
+                        <th>N° dossier</th>
+                        <th>Matricule</th>
+                        <th>N° bordereau</th>
+                        <th>Acte</th>
+                        <th>Mode de règlement</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let item of tab_liste_facture; let idx = index"
+                        (dblclick)="SelectionnerLaFacture(item, idx)"
+                      >
+                        <!--  <td>
+                          <div class="form-check check-tables">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value="something"
+                            />
+                          </div>
+                        </td> -->
+                        <td class="profile-image">
+                          {{ idx + 1 }}
+                        </td>
+                        <td class="profile-image">
+                          {{ item["PT_NOMPRENOMS"] }}
+                        </td>
+                        <td class="profile-image">
+                          {{ item["PT_CODEPATIENT"] }}
+                        </td>
+                        <td class="profile-image">
+                          {{ item["PT_MATRICULE"] }}
+                        </td>
+                        <td class="profile-image">
+                          {{ item["NUMEROBORDEREAU"] }}
+                        </td>
+                        <td>{{ item["ACT_LIBELLE"] }}</td>
+                        <td>{{ item["MR_LIBELLE"] }}</td>
+                        <td>
+                          {{ item["PT_CONTACT"] }}
+                        </td>
+                        <td>{{ item["PT_EMAIL"] }}</td>
+                        <td>{{ item["MC_DATESAISIE"] }}</td>
+                        <td>
+                          {{ item["MONTANT_FACTURE"]?.toLocaleString() }} F CFA
+                        </td>
+                        <td class="text-end">
+                          <div class="dropdown dropdown-action">
+                            <a
+                              href="#"
+                              class="action-icon dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              ><i class="fa fa-ellipsis-v"></i
+                            ></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                (click)="onMenuClick($event, item)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#danger-alert-modal"
+                                ><i class="fa fa-undo m-r-5"></i> Annulation
+                                facture</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal_affiche_reglement"
+                                (click)="RecupInfoFact(item)"
+                                ><i class="fa fa-tag m-r-5"></i> Règlement</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal_affiche_etat"
+                                (click)="EtatAAfficher('solde', item)"
+                                ><i class="fa fa-tag m-r-5"></i> Solde du
+                                compte</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal_affiche_etat"
+                                (click)="
+                                  EtatAAfficher('historique facture', item)
+                                "
+                                ><i class="fa fa-th-list m-r-5"></i> Historique
+                                de facture</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal_affiche_etat"
+                                (click)="EtatAAfficher('antecedent', item)"
+                                ><i class="fa fa-address-card m-r-5"></i>
+                                Antécédent patient</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="ecran_affiche == 'ajout'">
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer" (click)="AllerA('liste')"
+                    >{{ "pati_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "pati_filigranne_3" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>{{ "pati_details_patient" | translate }}</h4>
+                      </div>
+                      <div
+                        class="col"
+                        style="text-align: end; font-weight: bold"
+                      >
+                        {{ solde_compte_op?.toLocaleString() ?? 0 }} FCFA
+                      </div>
+                      <br /><br />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_num_dossier" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumDoc"
+                          id="idNumDoc"
+                          [(ngModel)]="model_patient[22]['valeur']"
+                          [disabled]="model_patient[22]['readOnly']"
+                          (change)="
+                            _toolsService._formaterNumDossier(model_patient, 22)
+                          "
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_matricule" | translate }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMatricule"
+                          id="idMatricule"
+                          [(ngModel)]="model_patient[7]['valeur']"
+                          [disabled]="model_patient[7]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_nom" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNom"
+                          id="idNom"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_patient[0]['valeur']"
+                          [disabled]="model_patient[0]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_montant_fact" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMontantFacture"
+                          id="idMontantFacture"
+                          [(ngModel)]="model_patient[20]['valeur']"
+                          [disabled]="model_patient[20]['readOnly']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '20',
+                              model_patient
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_ref_fact" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameRefPiece"
+                          id="idRefPiece"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_patient[23]['valeur']"
+                          [disabled]="model_patient[23]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_prenoms" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="namePrenoms"
+                          id="idPrenoms"
+                          [(ngModel)]="model_patient[1]['valeur']"
+                        />
+                      </div>
+                    </div> -->
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_sexe" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameSexe"
+                          id="idSexe"
+                          [(ngModel)]="model_patient[3]['valeur']"
+                          [disabled]="model_patient[3]['readOnly']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="let item of tab_liste_sexe; let ind = index"
+                            value="{{ item['SX_CODESEXE'] }}"
+                          >
+                            {{ item["SX_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_contact" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameContact"
+                          id="idContact"
+                          [(ngModel)]="model_patient[2]['valeur']"
+                          [disabled]="model_patient[2]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_email" | translate }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameEmail"
+                          id="idEmail"
+                          [(ngModel)]="model_patient[17]['valeur']"
+                          [disabled]="model_patient[17]['readOnly']"
+                          (change)="
+                            _toolsService._emailtoLowerCase(model_patient, '17')
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "pati_date_de_naissance" | translate }}
+                        </label>
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDateNaissance"
+                          name="nameDateNaissance"
+                          (input)="
+                            _toolsService._saisieAutoDate('idDateNaissance')
+                          "
+                          [(ngModel)]="model_patient[4]['valeur']"
+                          [disabled]="model_patient[4]['readOnly']"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_age" | translate }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameAge"
+                          id="idAge"
+                          [(ngModel)]="model_patient[4]['valeur']"
+                        />
+                      </div>
+                    </div> -->
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_lieu_habitation" | translate }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameLieuHabitation"
+                          id="idLieuHabitation"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_patient[5]['valeur']"
+                          [disabled]="model_patient[5]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <!--  <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_profession" | translate }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameProfession"
+                          id="idProfession"
+                          [(ngModel)]="model_patient[6]['valeur']"
+                        />
+                      </div>
+                    </div> -->
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_profession" | translate }}</label>
+                        <select
+                          class="form-control select"
+                          name="nameProfession"
+                          id="idProfession"
+                          [(ngModel)]="model_patient[6]['valeur']"
+                          [disabled]="model_patient[6]['readOnly']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_profession;
+                              let ind = index
+                            "
+                            value="{{ item['PF_CODEPROFESSION'] }}"
+                          >
+                            {{ item["PF_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_acte" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameActe"
+                          id="idActe"
+                          [(ngModel)]="model_patient[8]['valeur']"
+                          [disabled]="model_patient[8]['readOnly']"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="let item of tab_liste_acte; let ind = index"
+                            value="{{ item['ACT_CODEACTE'] }}"
+                          >
+                            {{ item["ACT_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <!-- <label>{{ "pati_libelle_op" | translate }}</label> -->
+                        <label>Libellé de l'opération</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameLibOp"
+                          id="idLibOp"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_patient[21]['valeur']"
+                          [disabled]="model_patient[21]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_statut" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          id="idStatut"
+                          name="nameStatut"
+                          [(ngModel)]="model_patient[10]['valeur']"
+                          [disabled]="model_patient[10]['readOnly']"
+                          (change)="ChoixAssure(model_patient[10]['valeur'])"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_assure;
+                              let ind = index
+                            "
+                            value="{{ item['STAT_CODESTATUT'] }}"
+                          >
+                            {{ item["STAT_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_patient[16]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_assurance" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameAssurance"
+                          id="idAssurance"
+                          [(ngModel)]="model_patient[16]['valeur']"
+                          [disabled]="model_patient[16]['readOnly']"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_assurance;
+                              let ind = index
+                            "
+                            value="{{ item['AS_CODEASSURANCE'] }}"
+                          >
+                            {{ item["AS_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <hr />
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_mode_reglement" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameModeReglement"
+                          id="idModeReglement"
+                          [(ngModel)]="model_patient[12]['valeur']"
+                          [disabled]="model_patient[12]['readOnly']"
+                          (change)="
+                            ChoixDuModeReglement(model_patient[12]['valeur'])
+                          "
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_mode_regl;
+                              let ind = index
+                            "
+                            value="{{ item['MR_CODEMODEREGLEMENT'] }}"
+                          >
+                            {{ item["MR_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_montant_en_chiffre" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMontantChiffre"
+                          id="idMontantChiffre"
+                          [(ngModel)]="model_patient[9]['valeur']"
+                          [disabled]="model_patient[9]['readOnly']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '9',
+                              model_patient
+                            )
+                          "
+                          (keyup)="AffectationDuMontant(9, 20)"
+                          (change)="ConvertionDuMontantEnLettre('9', 11)"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label>{{
+                          "pati_montant_en_lettre" | translate
+                        }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMontantLettre"
+                          id="idMontantLettre"
+                          [(ngModel)]="model_patient[11]['valeur']"
+                          [disabled]="model_patient[11]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="mail-reports">
+                        <ul class="nav">
+                          <li>
+                            <a
+                              href="javascript:;"
+                              class="ford-angle"
+                              (click)="AjouterLeModeDeReglement()"
+                              title="Ajouter le mode de règlement"
+                              ><img
+                                alt=""
+                                src="assets/img/icons/forward-icon-03.svg"
+                            /></a>
+                          </li>
+                          <b style="color: #0b5ed7"
+                            >Total facture : {{ montant_total_facture }} F
+                            CFA</b
+                          >
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="tab_affiche_mode_regle.length != 0">
+                      <div class="col-xl-2"></div>
+                      <div class="col-xl-8">
+                        <div id="accordion" class="custom-faq mb-3">
+                          <div
+                            class="card mb-1"
+                            *ngFor="
+                              let item of tab_affiche_mode_regle;
+                              let id = index
+                            "
+                          >
+                            <div class="card-header" id="headingOne">
+                              <div class="row">
+                                <div class="col">
+                                  <h5 class="accordion-faq m-0">
+                                    <a
+                                      class="text-dark"
+                                      data-bs-toggle="collapse"
+                                      href="#collapse{{ id }}"
+                                      aria-expanded="true"
+                                      style="text-decoration: none"
+                                    >
+                                      <i
+                                        class="mdi mdi-help-circle me-1 text-primary"
+                                      ></i>
+                                      {{ item["libelle_mode_reglement"] }}
+                                    </a>
+                                  </h5>
+                                </div>
+                                <div class="col" style="text-align: end">
+                                  <button
+                                    type="button"
+                                    class="btn btn-light"
+                                    (click)="SupprimerModeReglement(id)"
+                                  >
+                                    Supprimer
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              id="collapse{{ id }}"
+                              class="collapse show"
+                              aria-labelledby="headingOne"
+                              data-bs-parent="#accordion"
+                            >
+                              <div class="card-body">
+                                <span
+                                  ><b
+                                    >{{
+                                      "pati_montant_en_chiffre" | translate
+                                    }}:</b
+                                  >
+                                  {{ item["montant_chiffre"] }}</span
+                                ><br />
+                                <span
+                                  ><b
+                                    >{{
+                                      "pati_montant_en_lettre" | translate
+                                    }}:</b
+                                  >
+                                  {{ item["montant_lettre"] }}</span
+                                >
+                                <br />
+                                <span
+                                  ><b>{{ "pati_acte" | translate }}:</b>
+                                  {{ item["libelle_acte"] }}</span
+                                ><br />
+                                <span
+                                  ><b>{{ "pati_assurance" | translate }}:</b>
+                                  {{ item["libelle_assurance"] }}</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end #accordions-->
+                      </div>
+                      <div class="col-xl-2"></div>
+                    </div>
+                    <hr
+                      *ngIf="
+                        model_patient[13]['afficher'] ||
+                        model_patient[14]['afficher'] ||
+                        model_patient[15]['afficher']
+                      "
+                    />
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_patient[13]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_num_cheque" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumCheque"
+                          id="idNumCheque"
+                          [(ngModel)]="model_patient[13]['valeur']"
+                          [disabled]="model_patient[13]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_patient[14]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_banque" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          (dblclick)="
+                            ChargerComboNumCompte(model_patient[14]['valeur'])
+                          "
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameBanque"
+                          id="idBanque"
+                          [(ngModel)]="model_patient[14]['valeur']"
+                          [disabled]="model_patient[14]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_patient[15]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_num_virement" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNimVirement"
+                          id="idNumVirement"
+                          [(ngModel)]="model_patient[15]['valeur']"
+                          [disabled]="model_patient[15]['readOnly']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="
+                            EnregistrerFacturePatient(
+                              model_patient,
+                              [0, 3, 8, 10, 12, 9, 20]
+                            )
+                          "
+                        >
+                          {{ "btn_enregistrer" | translate }}
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary cancel-form"
+                          (click)="AnnulerAction()"
+                        >
+                          {{ "btn_annuler" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notification-box">
+        <div class="msg-sidebar notifications msg-noti">
+          <div class="topnav-dropdown-header">
+            <span>Messages</span>
+          </div>
+          <div class="drop-scroll msg-list-scroll" id="msg_list">
+            <ul class="list-box">
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">R</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Richard Miles </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item new-message">
+                    <div class="list-left">
+                      <span class="avatar">J</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">John Doe</span>
+                      <span class="message-time">1 Aug</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">T</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Tarah Shropshire </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">M</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Mike Litorus</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">C</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Catherine Manseau </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">D</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Domenic Houston </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">B</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Buster Wigton </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">R</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Rolland Webber </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">C</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author"> Claire Mapes </span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">M</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Melita Faucher</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">J</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Jeffery Lalor</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">L</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Loren Gatlin</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="chat.html">
+                  <div class="list-item">
+                    <div class="list-left">
+                      <span class="avatar">T</span>
+                    </div>
+                    <div class="list-body">
+                      <span class="message-author">Tarah Shropshire</span>
+                      <span class="message-time">12:28 AM</span>
+                      <div class="clearfix"></div>
+                      <span class="message-content"
+                        >Lorem ipsum dolor sit amet, consectetur
+                        adipiscing</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="topnav-dropdown-footer">
+            <a href="chat.html">See all messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="delete_patient" class="modal fade delete-modal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <img src="assets/img/sent.png" alt="" width="50" height="46" />
+            <h3>Are you sure want to delete this ?</h3>
+            <div class="m-t-20">
+              <a href="#" class="btn btn-white" data-bs-dismiss="modal"
+                >Close</a
+              >
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="modal_affiche_etat"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "param_date_de_creation" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDate1"
+                          name="nameDate1"
+                          [(ngModel)]="model_patient[18]['valeur']"
+                          (input)="_toolsService._saisieAutoDate('idDate1')"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "param_date_de_creation" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          id="idDate2"
+                          name="nameDate2"
+                          [(ngModel)]="model_patient[19]['valeur']"
+                          (input)="_toolsService._saisieAutoDate('idDate2')"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="
+                            AfficherEtat(model_patient, [18, 19], titre_etat)
+                          "
+                        >
+                          {{ "btn_apercu" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="modal_affiche_reglement"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <b>Total facture :</b>
+            <span style="font-weight: bold; color: #0b5ed7">
+              {{ infofactureAregler?.MONTANT_FACTURE?.toLocaleString() }} F
+              CFA</span
+            >
+            <br />
+            <b>Total facture déjà réglé :</b>
+            <span style="font-weight: bold; color: #0b5ed7">
+              {{ tab_liste_factureAregler?.MONTANTAREGLER?.toLocaleString() }} F
+              CFA</span
+            >
+
+            <br />
+            <b>Total facture restant à régler :</b>
+            <span style="font-weight: bold; color: #0b5ed7">
+              {{ total_fact_rest_a_regler?.toLocaleString() }} F CFA</span
+            >
+            <br /><br />
+            <form>
+              <div class="row">
+                <hr />
+                <br /><br />
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="input-block local-forms">
+                    <label
+                      >{{ "pati_mode_reglement" | translate }}
+                      <span class="login-danger">*</span></label
+                    >
+                    <select
+                      class="form-control select"
+                      name="nameModeReglement"
+                      id="idModeReglement"
+                      [(ngModel)]="model_patient[12]['valeur']"
+                      (change)="
+                        ChoixDuModeReglement(model_patient[12]['valeur'])
+                      "
+                    >
+                      <option value="">Faites un choix</option>
+                      <option
+                        *ngFor="
+                          let item of tab_liste_mode_regl;
+                          let ind = index
+                        "
+                        value="{{ item['MR_CODEMODEREGLEMENT'] }}"
+                      >
+                        {{ item["MR_LIBELLE"] }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="input-block local-forms">
+                    <label
+                      >{{ "pati_montant_en_chiffre" | translate }}
+                      <span class="login-danger">*</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder=""
+                      name="nameMontantChiffre"
+                      id="idMontantChiffre"
+                      [(ngModel)]="model_patient[9]['valeur']"
+                      (input)="
+                        _toolsService._formatageMontantAlaSaisie(
+                          $event,
+                          '9',
+                          model_patient
+                        )
+                      "
+                      (change)="ConvertionDuMontantEnLettre('9', 11)"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="input-block local-forms">
+                    <label>{{ "pati_montant_en_lettre" | translate }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder=""
+                      name="nameMontantLettre"
+                      id="idMontantLettre"
+                      [(ngModel)]="model_patient[11]['valeur']"
+                      [disabled]="model_patient[11]['readOnly']"
+                    />
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="mail-reports">
+                    <ul class="nav">
+                      <li>
+                        <a
+                          href="javascript:;"
+                          class="ford-angle"
+                          (click)="AjouterLeModeDeReglement()"
+                          title="Ajouter le mode de règlement"
+                          ><img
+                            alt=""
+                            src="assets/img/icons/forward-icon-03.svg"
+                        /></a>
+                      </li>
+                      <b style="color: #0b5ed7"
+                        >Total facture : {{ montant_total_facture }} F CFA</b
+                      >
+                    </ul>
+                  </div>
+                </div>
+                <div class="row" *ngIf="tab_affiche_mode_regle.length != 0">
+                  <div class="col-xl-2"></div>
+                  <div class="col-xl-8">
+                    <div id="accordion" class="custom-faq mb-3">
+                      <div
+                        class="card mb-1"
+                        *ngFor="
+                          let item of tab_affiche_mode_regle;
+                          let id = index
+                        "
+                      >
+                        <div class="card-header" id="headingOne">
+                          <h5 class="accordion-faq m-0">
+                            <a
+                              class="text-dark"
+                              data-bs-toggle="collapse"
+                              href="#collapse{{ id }}"
+                              aria-expanded="true"
+                              style="text-decoration: none"
+                            >
+                              <i
+                                class="mdi mdi-help-circle me-1 text-primary"
+                              ></i>
+                              {{ item["libelle_mode_reglement"] }}
+                            </a>
+                          </h5>
+                        </div>
+
+                        <div
+                          id="collapse{{ id }}"
+                          class="collapse show"
+                          aria-labelledby="headingOne"
+                          data-bs-parent="#accordion"
+                        >
+                          <div class="card-body">
+                            <span
+                              ><b
+                                >{{ "pati_montant_en_chiffre" | translate }}:</b
+                              >
+                              {{ item["montant_chiffre"] }}</span
+                            ><br />
+                            <span
+                              ><b
+                                >{{ "pati_montant_en_lettre" | translate }}:</b
+                              >
+                              {{ item["montant_lettre"] }}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end #accordions-->
+                  </div>
+                  <div class="col-xl-2"></div>
+                </div>
+                <hr
+                  *ngIf="
+                    model_patient[13]['afficher'] ||
+                    model_patient[14]['afficher'] ||
+                    model_patient[15]['afficher']
+                  "
+                />
+                <div
+                  class="col-12 col-md-6 col-xl"
+                  *ngIf="model_patient[13]['afficher']"
+                >
+                  <div class="input-block local-forms">
+                    <label
+                      >{{ "pati_num_cheque" | translate }}
+                      <span class="login-danger">*</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder=""
+                      name="nameNumCheque"
+                      id="idNumCheque"
+                      [(ngModel)]="model_patient[13]['valeur']"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-12 col-md-6 col-xl"
+                  *ngIf="model_patient[14]['afficher']"
+                >
+                  <div class="input-block local-forms">
+                    <label
+                      >{{ "pati_banque" | translate }}
+                      <span class="login-danger">*</span></label
+                    >
+                    <input
+                      (dblclick)="
+                        ChargerComboNumCompte(model_patient[14]['valeur'])
+                      "
+                      class="form-control"
+                      type="text"
+                      placeholder=""
+                      name="nameBanque"
+                      id="idBanque"
+                      [(ngModel)]="model_patient[14]['valeur']"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-12 col-md-6 col-xl"
+                  *ngIf="model_patient[15]['afficher']"
+                >
+                  <div class="input-block local-forms">
+                    <label
+                      >{{ "pati_num_virement" | translate }}
+                      <span class="login-danger">*</span></label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder=""
+                      name="nameNimVirement"
+                      id="idNumVirement"
+                      [(ngModel)]="model_patient[15]['valeur']"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="doctor-submit text-end">
+                    <button
+                      class="btn btn-primary submit-form me-2"
+                      (click)="
+                        EnregistrerReglementFacture(
+                          model_patient,
+                          [0, 3, 8, 10, 12, 9, 4, 2]
+                        )
+                      "
+                    >
+                      {{ "btn_enregistrer" | translate }}
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary cancel-form"
+                      (click)="AnnulerAction()"
+                    >
+                      {{ "btn_annuler" | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Danger Alert Modal -->
+<div
+  id="danger-alert-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content modal-filled bg-danger">
+      <div class="modal-body p-4">
+        <div class="text-center">
+          <i class="dripicons-wrong h1 text-white"></i>
+          <h4 class="mt-2 text-white">Annulation facture !</h4>
+          <p class="mt-3 text-white">
+            Cette action est irreversible. Voulez-vous continuer ?
+          </p>
+          <button
+            type="button"
+            class="btn btn-light my-2"
+            data-bs-dismiss="modal"
+            (click)="AnnulationFacture()"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">N° compte</th>
+                        <th scope="col">Libellé</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="
+                          let ligne of tab_liste_num_compte;
+                          let index = index
+                        "
+                        (click)="SelectionnerUnCompte(index)"
+                        style="cursor: pointer"
+                      >
+                        <td>{{ ligne["PL_NUMCOMPTE"] }}</td>
+                        <td>{{ ligne["PL_LIBELLE"] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

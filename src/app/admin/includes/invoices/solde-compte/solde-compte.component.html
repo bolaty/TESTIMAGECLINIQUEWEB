@@ -1,0 +1,83 @@
+<div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div>
+
+<app-entete-invoice
+  title="RELEVE DE COMPTE"
+  [periode_du]="session_solde[0]['objetEnvoi']['Objet'][0]['DATEDEBUT']"
+  [periode_au]="session_solde[0]['objetEnvoi']['Objet'][0]['DATEFIN']"
+></app-entete-invoice>
+
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col colcompte">
+      N° dossier: {{ session_solde[0]["PT_CODEPATIENT"] }} <br />N° matricule:
+      {{ session_solde[0]["PT_MATRICULE"] }}
+    </div>
+  </div>
+  <br />
+
+  <div class="row">
+    <div class="col colinfo1"></div>
+    <div class="col colinfo2">
+      {{ session_solde[0]["PT_NOMPRENOMS"] }} <br />
+      {{ session_solde[0]["PT_LIEUHABITATION"] }} <br />
+      CÔTE D'IVOIRE
+    </div>
+  </div>
+  <br />
+
+  <table>
+    <!-- entete -->
+    <tr>
+      <th>Date</th>
+      <th>Heure</th>
+      <th style="width: 290px">Libellé</th>
+      <!-- <th>N° bordereau</th> -->
+      <th>Référence</th>
+      <th>N° bordereau</th>
+      <th style="width: 100px">Mode de règlement</th>
+      <th>Opérateur</th>
+      <th style="width: 100px">Débit</th>
+      <th style="width: 100px">Crédit</th>
+      <th style="width: 100px">Solde</th>
+    </tr>
+    <!--     <tr>
+      <td colspan="5">Ancien solde au 31/12/2023</td>
+      <td style="text-align: end">0</td>
+    </tr> -->
+
+    <!-- section des billets -->
+    <tr class="" *ngFor="let item of session_solde">
+      <td>{{ item["MC_DATEPIECE"] }}</td>
+      <td>{{ item["MC_HEUREACTION"] }}</td>
+      <td class="classlibelle">{{ item["MC_LIBELLEOPERATION"] }}</td>
+      <!-- <td class="classlibelle">{{ item["NUMBORDEREAU"] }}</td> -->
+      <td>{{ item["MC_REFERENCEPIECE"] }}</td>
+      <td>{{ item["NUMBORDEREAU"] }}</td>
+      <td>{{ item["MR_LIBELLE"] }}</td>
+      <td>{{ item["OP_NOMPRENOM"] }}</td>
+      <td class="classmontant">
+        {{ item["MC_MONTANTDEBIT"].toLocaleString() }} F CFA
+      </td>
+      <td class="classmontant">
+        {{ item["MC_MONTANTCREDIT"].toLocaleString() }} F CFA
+      </td>
+      <td class="classmontant">{{ item["SOLDE"].toLocaleString() }} F CFA</td>
+    </tr>
+    <tr>
+      <th colspan="9">Nouveau solde</th>
+      <th class="classmontant">{{ nouveau_solde.toLocaleString() }} F CFA</th>
+    </tr>
+  </table>
+  <span style="font-size: smaller">Sauf erreur ou omission</span>
+</div>
+<!-- tableau du billetage -->

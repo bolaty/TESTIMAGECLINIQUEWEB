@@ -1,0 +1,26 @@
+.container {
+  width: 80%;
+  margin: 7px auto;
+  padding: 20px;
+}
+.table-container {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.table-container th {
+  background-color: #2e37a4; // #4caf50;
+  color: white;
+  font-weight: bold;
+}
+.total-row {
+  font-weight: bold;
+  background-color: #f4f5fa; // #a4a9d8; // #f1f1f1;
+}

@@ -1,0 +1,73 @@
+<div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div>
+
+<app-entete-invoice
+  title="ANTECEDENT PATIENT"
+  [periode_du]="session_infos['date1']"
+  [periode_au]="session_infos['date2']"
+></app-entete-invoice>
+
+<div class="container">
+  <div class="row">
+    <div class="col colinfo1"></div>
+    <div class="col colinfo2">
+      DJAMA HBERTINE <br />
+      ABIDJAN <br />
+      CÔTE D'IVOIRE
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <div class="col" style="text-align: center"><span>Journée 1</span></div>
+
+    <table>
+      <!-- entete -->
+      <tr>
+        <th>Date</th>
+        <th>Acte</th>
+      </tr>
+
+      <!-- section des billets -->
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">Libellé acte</td>
+      </tr>
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">Libellé acte</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <div class="col" style="text-align: center"><span>Journée 1</span></div>
+
+    <table>
+      <!-- entete -->
+      <tr>
+        <th>Date</th>
+        <th>Acte</th>
+      </tr>
+
+      <!-- section des billets -->
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">Libellé acte</td>
+      </tr>
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">Libellé acte</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- tableau du billetage -->

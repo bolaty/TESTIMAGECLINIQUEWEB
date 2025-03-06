@@ -1,0 +1,298 @@
+<div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div>
+
+<!-- dans le cas de laffichage normal en passant par le module de facture -->
+<!-- ou -->
+<!-- dans le cas de laffichage du reçu en passant par les operations de caisse -->
+<body *ngIf="session_recu_op[0]['NUMEROBORDEREAUREGLEMENT'] && !session_recu_op[0]['NUMEROBORDEREAU']">
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+  <div *ngFor="let el of [].constructor(3)">
+    <app-entete-recu
+      title="RECU DE PAIEMENT"
+      [numero_bordereau]="session_recu_op[0]['NUMEROBORDEREAUREGLEMENT']"
+    ></app-entete-recu>
+    <div class="row">
+      <div class="col">
+        <span
+          ><strong
+            >La somme de:
+            {{
+              session_recu_op[0]["objetEnvoi"]["Objet"][0][
+                "TABLEMODEREGLEMENT"
+              ][0]["MC_MONTANT_FACTURE"].toLocaleString()
+            }}
+            F CFA</strong
+          ></span
+        >
+      </div>
+      <div class="col" style="font-weight: bold" *ngIf="label_1">
+        <span>N° dossier: {{ num_dossier }}</span>
+        <span> | Matricule: {{ matricule }}</span
+        ><br />
+        <span>Nom/prénoms patient: {{ nom_prenoms }}</span
+        ><br />
+        <span>Contact: {{ tel }}</span
+        ><br />
+        <span>Statut: {{ statut }}</span>
+        <span> | Assurance: {{ assurance }}</span>
+      </div>
+    </div>
+
+    <table class="table-container">
+      <!-- entete -->
+      <tr>
+        <th>Mode de règlement</th>
+        <th>Libellé</th>
+        <th>Montant</th>
+      </tr>
+
+      <tr
+        *ngFor="
+          let item of session_recu_op[0]['objetEnvoi']['Objet'][0][
+            'TABLEMODEREGLEMENT'
+          ];
+          let idx = index
+        "
+      >
+        <td>
+          <strong>{{ item["MR_LIBELLEMODEREGLEMENT"] }}</strong>
+        </td>
+        <td style="width: 260px; text-align: start">
+          <strong *ngIf="label_1">
+            {{ label_1 }} {{ acte }} {{ label_2 }}</strong
+          >
+          <strong *ngIf="!label_1">
+            {{ session_recu_op[0]["MC_LIBELLEOPERATION"] }}</strong
+          >
+        </td>
+        <td style="width: 260px; text-align: end">
+          <strong>
+            {{ item["MC_MONTANTCREDIT"].toLocaleString() }} F CFA</strong
+          >
+        </td>
+      </tr>
+    </table>
+
+    <span
+      *ngIf="session_recu_op[0]['NUMEROBORDEREAUREGLEMENT'].includes('REGFA')"
+      ><strong
+        >Nom du bénéficiaire ou l'assuré:
+        <b>{{
+          session_recu_op[0]["objetEnvoi"]["Objet"][0]["TABLEMODEREGLEMENT"][0][
+            "MC_NOMTIERS"
+          ]
+        }}</b></strong
+      ></span
+    ><br />
+    <span
+      ><strong
+        >Nom du tireur:
+        <b>{{ session_de_connexion["OP_NOMPRENOM"] }}</b></strong
+      ></span
+    >
+
+    <div class="row">
+      <div class="col-6 visa">
+        <p><strong>Visa cachet de l'entreprise</strong></p>
+      </div>
+    </div>
+    <app-pied-recu></app-pied-recu>
+    <hr style="padding: 7px" />
+  </div>
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+</body>
+
+<!-- dans le cas de laffichage de recu en passant par le module de reedition -->
+<body *ngIf="!session_recu_op[0]['NUMEROBORDEREAUREGLEMENT'] && !session_recu_op[0]['NUMEROBORDEREAU']">
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+  <div *ngFor="let el of [].constructor(3)">
+    <app-entete-recu
+      title="RECU DE PAIEMENT"
+      [numero_bordereau]="session_recu_op[0]['MC_NUMBORDEREAU']"
+    ></app-entete-recu>
+    <!--  <span
+      ><strong
+        >La somme de:
+        {{ total_facture.toLocaleString() }}
+        F CFA</strong
+      ></span
+    > -->
+
+    <div class="row">
+      <div class="col">
+        <span
+          ><strong
+            >La somme de:
+            {{ total_facture.toLocaleString() }}
+            F CFA</strong
+          ></span
+        >
+      </div>
+      <div class="col" style="font-weight: bold" *ngIf="label_1">
+        <span>N° dossier: {{ num_dossier }}</span>
+        <span> | Matricule: {{ matricule }}</span
+        ><br />
+        <span>Nom/prénoms patient: {{ nom_prenoms }}</span
+        ><br />
+        <span>Contact: {{ tel }}</span
+        ><br />
+        <span>Statut: {{ statut }}</span>
+        <span> | Assurance: {{ assurance }}</span>
+      </div>
+    </div>
+
+    <table class="table-container">
+      <!-- entete -->
+      <tr>
+        <th>Mode de règlement</th>
+        <th style="width: 800px">Libellé</th>
+        <th>Montant</th>
+      </tr>
+
+      <!-- section des billets -->
+      <tr *ngFor="let item of session_recu_op; let idx = index">
+        <td>
+          <strong>{{ item["MR_LIBELLE"] }}</strong>
+        </td>
+        <!--  <td style="width: 260px; text-align: start">
+          <strong> {{ item["MC_LIBELLEOPERATION"] }}</strong>
+        </td> -->
+        <td style="width: 260px; text-align: start">
+          <strong *ngIf="label_1">
+            {{ label_1 }} {{ acte }} {{ label_2 }}</strong
+          >
+          <strong *ngIf="!label_1">
+            {{ session_recu_op[0]["MC_LIBELLEOPERATION"] }}</strong
+          >
+        </td>
+        <td style="width: 260px; text-align: end">
+          <strong>
+            {{ item["MC_MONTANTCREDIT"].toLocaleString() }} F CFA</strong
+          >
+        </td>
+      </tr>
+    </table>
+
+    <span
+      ><strong
+        >Nom du bénéficiaire ou l'assuré:
+        <b>{{ session_recu_op[0]["MC_NOMTIERS"] }}</b></strong
+      ></span
+    ><br />
+    <span
+      ><strong
+        >Nom du tireur:
+        <b>{{ session_de_connexion["OP_NOMPRENOM"] }}</b></strong
+      ></span
+    >
+
+    <div class="row">
+      <div class="col-6 visa">
+        <p><strong>Visa cachet de l'entreprise</strong></p>
+      </div>
+    </div>
+    <app-pied-recu></app-pied-recu>
+    <hr style="padding: 7px" />
+  </div>
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+</body>
+
+<!-- dans le cas de laffichage de recu en passant par le module de versement -->
+<body *ngIf="session_recu_op[0]['NUMEROBORDEREAU']">
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+  <div *ngFor="let el of [].constructor(3)">
+    <app-entete-recu
+      title="RECU DE CAISSE"
+      [numero_bordereau]="session_recu_op[0]['NUMEROBORDEREAU']"
+    ></app-entete-recu>
+    <div class="row">
+      <div class="col">
+        <span
+          ><strong
+            >La somme de:
+            {{
+              session_recu_op[0]["objetEnvoi"]["Objet"][0][
+                "TABLEMODEREGLEMENT"
+              ][0]["EM_MONTANT"].toLocaleString()
+            }}
+            F CFA</strong
+          ></span
+        >
+      </div>
+      <div class="col" style="font-weight: bold" >
+        <span>N° dossier: {{ num_dossier }}</span>
+        <span> | Matricule: {{ matricule }}</span
+        ><br />
+        <span>Nom/prénoms patient: {{ nom_prenoms }}</span
+        ><br />
+        <span>Contact: {{ tel }}</span
+        ><br />
+        <span>Statut: {{ statut }}</span>
+      </div>
+    </div>
+
+    <table class="table-container">
+      <!-- entete -->
+      <tr>
+        <th style="width: 760px; text-align: start">Libellé</th>
+        <th>Montant</th>
+      </tr>
+
+      <tr
+        *ngFor="
+          let item of session_recu_op[0]['objetEnvoi']['Objet'][0][
+            'TABLEMODEREGLEMENT'
+          ];
+          let idx = index
+        "
+      >
+        
+        <td style="width: 760px; text-align: start">
+          <strong >
+            {{ item["MC_LIBELLEOPERATION"] }}</strong
+          >
+        </td>
+        <td style="width: 260px; text-align: end">
+          <strong>
+            {{ item["EM_MONTANT"].toLocaleString() }} F CFA</strong
+          >
+        </td>
+      </tr>
+    </table>
+
+    <!--<span
+      *ngIf="session_recu_op[0]['NUMEROBORDEREAUREGLEMENT'].includes('REGFA')"
+      ><strong
+        >Nom du bénéficiaire ou l'assuré:
+        <b>{{
+          session_recu_op[0]["objetEnvoi"]["Objet"][0]["TABLEMODEREGLEMENT"][0][
+            "MC_NOMTIERS"
+          ]
+        }}</b></strong
+      ></span
+    ><br />-->
+    <span
+      ><strong
+        >Nom du tireur:
+        <b>{{ session_de_connexion["OP_NOMPRENOM"] }}</b></strong
+      ></span
+    >
+
+    <div class="row">
+      <div class="col-6 visa">
+        <p><strong>Visa cachet de l'entreprise</strong></p>
+      </div>
+    </div>
+    <app-pied-recu></app-pied-recu>
+    <hr style="padding: 7px" />
+  </div>
+  <!-- ------------------------------------ 1 ------------------------------------ -->
+</body>

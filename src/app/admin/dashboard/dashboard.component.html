@@ -1,0 +1,289 @@
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <div class="content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "dashb_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active">
+                {{ "dashb_filigranne_2" | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <div class="good-morning-blk">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="morning-user">
+              <h2>
+                {{ "dashb_bonjour" | translate }}, <span>{{session_de_connexion['OP_NOMPRENOM']}}</span>
+              </h2>
+              <p>{{ "dashb_bonne_journee" | translate }}</p>
+            </div>
+          </div>
+          <div class="col-md-6 position-blk">
+            <div class="morning-img">
+              <img src="assets/img/morning-img-01.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl">
+          <div class="dash-widget">
+            <div class="dash-boxs comman-flex-center">
+              <img src="assets/img/icons/icons8-synchroniser.svg" alt="" />
+            </div>
+            <div class="dash-content dash-count">
+              <h4>{{ "dashb_indic_acte" | translate }}</h4>
+              <h2><span class="counter-up">250</span></h2>
+              <p>
+                <span class="passive-view"
+                  ><i class="feather-arrow-up-right me-1"></i>400 000</span
+                >
+                F CFA
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl">
+          <div class="dash-widget">
+            <div class="dash-boxs comman-flex-center">
+              <img src="assets/img/icons/icons8-fichier.svg" alt="" />
+            </div>
+            <div class="dash-content dash-count">
+              <h4>{{ "dashb_indic_facture" | translate }}</h4>
+              <h2><span class="counter-up">140</span></h2>
+              <p>
+                <span class="passive-view"
+                  ><i class="feather-arrow-up-right me-1"></i>200 000</span
+                >
+                F CFA
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doctor-list-blk">
+        <div class="row">
+          <h4 class="card-title mb-0">
+            {{ "dashb_indic_classification_acte" | translate }}
+          </h4>
+          <div class="col-xl col-md-6">
+            <div class="doctor-widget border-right-bg">
+              <div class="doctor-box-icon flex-shrink-0">
+                <img src="assets/img/icons/doctor-dash-02.svg" alt="" />
+              </div>
+              <div class="doctor-content dash-count flex-grow-1">
+                <h4>
+                  <span class="counter-up">20</span
+                  ><span style="color: chocolate; font-size: large"
+                    >125 000 FCFA</span
+                  >
+                  <!-- <span class="status-pink">-20%</span> -->
+                </h4>
+                <h5>Consultations</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl col-md-6">
+            <div class="doctor-widget border-right-bg">
+              <div class="doctor-box-icon flex-shrink-0">
+                <img src="assets/img/icons/doctor-dash-02.svg" alt="" />
+              </div>
+              <div class="doctor-content dash-count flex-grow-1">
+                <h4>
+                  <span class="counter-up">21</span
+                  ><span style="color: chocolate; font-size: large"
+                    >126 000 FCFA</span
+                  >
+                  <!-- <span class="status-pink">-20%</span> -->
+                </h4>
+                <h5>Labo</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl col-md-6">
+            <div class="doctor-widget border-right-bg">
+              <div class="doctor-box-icon flex-shrink-0">
+                <img src="assets/img/icons/doctor-dash-02.svg" alt="" />
+              </div>
+              <div class="doctor-content dash-count flex-grow-1">
+                <h4>
+                  <span class="counter-up">7</span
+                  ><span style="color: chocolate; font-size: large"
+                    >15 000 FCFA</span
+                  >
+                  <!-- <span class="status-pink">-20%</span> -->
+                </h4>
+                <h5>Pharmacie</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl col-md-6">
+            <div class="doctor-widget">
+              <div class="doctor-box-icon flex-shrink-0">
+                <img src="assets/img/icons/doctor-dash-02.svg" alt="" />
+              </div>
+              <div class="doctor-content dash-count flex-grow-1">
+                <h4>
+                  <span class="counter-up">10</span
+                  ><span style="color: chocolate; font-size: large"
+                    >105 000 FCFA</span
+                  >
+                  <!-- <span class="status-pink">-20%</span> -->
+                </h4>
+                <h5>Hospitalisation</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl col-md-6">
+            <div class="doctor-widget">
+              <div class="doctor-box-icon flex-shrink-0">
+                <img src="assets/img/icons/doctor-dash-02.svg" alt="" />
+              </div>
+              <div class="doctor-content dash-count flex-grow-1">
+                <h4>
+                  <span class="counter-up">10</span
+                  ><span style="color: chocolate; font-size: large"
+                    >105 000 FCFA</span
+                  >
+                  <!-- <span class="status-pink">-20%</span> -->
+                </h4>
+                <h5>Examens</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-12 col-xl">
+          <div class="card top-departments">
+            <div class="card-header">
+              <h4 class="card-title mb-0">
+                {{ "dashb_title_mode_de_reglement" | translate }}
+              </h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>{{ "dashb_espece" | translate }}</h4>
+                      <p>35 | 350 000 F CFA</p>
+                    </div>
+                  </div>
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>MTN money</h4>
+                      <p>24 | 240 000 F CFA</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>Orange money</h4>
+                      <p>10 | 100 000 F CFA</p>
+                    </div>
+                  </div>
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>Moov money</h4>
+                      <p>15 | 150 000 F CFA</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>Wave</h4>
+                      <p>20 | 200 000 F CFA</p>
+                    </div>
+                  </div>
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>{{ "dashb_cheque" | translate }}</h4>
+                      <p>15 | 150 000 F CFA</p>
+                    </div>
+                  </div>
+                  <div class="activity-top">
+                    <div class="activity-boxs comman-flex-center">
+                      <img
+                        src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="departments-list">
+                      <h4>{{ "dashb_virement" | translate }}</h4>
+                      <p>20 | 200 000 F CFA</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

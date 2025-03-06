@@ -1,0 +1,68 @@
+<!-- <div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div> -->
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="ImprimerLetat()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','FormationResultat')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','FormationResultat')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+  <app-entete-invoice
+  title="ÉTAT DE FORMATION DU RÉSULTAT ({{ recup_session }})"
+  [periode_du]="session_formation[0]['objetEnvoi']['Objet'][0]['DATEDEBUT']"
+  [periode_au]="session_formation[0]['objetEnvoi']['Objet'][0]['DATEFIN']"
+></app-entete-invoice>
+
+<div class="container">
+  <table>
+    <!-- entete -->
+    <tr>
+      <th>N° compte</th>
+      <th>Rubrique</th>
+      <th>Montant net</th>
+    </tr>
+
+    <!-- section des billets -->
+    <tr *ngFor="let item of session_formation">
+      <td>{{ item["PL_NUMCOMPTE"] }}</td>
+      <td style="width: 260px">{{ item["PL_LIBELLE"] }}</td>
+      <td style="width: 260px">
+        {{ item["MC_MONTANT"].toLocaleString() }} F CFA
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2">Total</th>
+      <th>{{ total.toLocaleString() }} F CFA</th>
+    </tr>
+  </table>
+</div>
+<!-- tableau du billetage -->
+
+</div>
+

@@ -1,0 +1,50 @@
+<!-- preload -->
+<!-- <div class="preload preload-container" *ngIf="_loaderService.isLoading_service">
+  <div class="middle"></div>
+</div> -->
+
+<!-- ----------------------- generale 1 -->
+<!-- /* From Uiverse.io by milley69 */  -->
+<div
+  class="loading preload-container"
+  *ngIf="_loaderService.isLoading_service && title == 'l1'"
+>
+  <svg width="164px" height="148px" class="middle">
+    <polyline
+      points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
+      id="back"
+    ></polyline>
+    <polyline
+      points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
+      id="front"
+    ></polyline>
+  </svg>
+</div>
+<!-- ----------------------- generale 1 -->
+
+<!-- ----------------------- generale 2 -->
+<!-- /* From Uiverse.io by FWDJc */  -->
+<div
+  class="preload-container"
+  *ngIf="_loaderService.isLoading_service && title == 'l2'"
+>
+  <div class="middle">
+    <div class="loader"></div>
+  </div>
+</div>
+<!-- ----------------------- generale 2 -->
+
+<!-- ----------------------- pour les editions -->
+<!-- /* From Uiverse.io by Nawsome */   -->
+<div
+  class="typewriter preload-container"
+  *ngIf="_loaderService.isLoading_service && title == 'l3'"
+>
+  <div class="middle">
+    <div class="slide"><i></i></div>
+    <div class="paper"></div>
+    <div class="keyboard"></div>
+  </div>
+</div>
+<!-- ----------------------- pour les editions -->
+<!-- /preload -->

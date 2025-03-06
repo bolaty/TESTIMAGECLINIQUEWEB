@@ -1,0 +1,487 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div>
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "compta_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "compta_filigranne_2" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <div class="row">
+                          <div class="col">
+                            <h4>{{ "compta_details_op" | translate }}</h4>
+                          </div>
+                          <div
+                            class="col"
+                            style="text-align: end; font-weight: bold"
+                          >
+                            {{ solde_compte_op?.toLocaleString() ?? 0 }} FCFA
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_famille_op" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameFamilleOperation"
+                          id="idFamilleOperation"
+                          [(ngModel)]="model_op_caisse[0]['valeur']"
+                          (change)="
+                            ChargerComboOperation(model_op_caisse[0]['valeur'])
+                          "
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_famille_operation;
+                              let ind = index
+                            "
+                            value="{{ item['FO_CODEFAMILLEOPERATION'] }}"
+                          >
+                            {{ item["FO_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_operation" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameOperation"
+                          id="idOperation"
+                          [(ngModel)]="model_op_caisse[1]['valeur']"
+                          (change)="ChoixDeLOperation()"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_operation;
+                              let ind = index
+                            "
+                            value="{{ item['OP_CODEOPERATION'] }}"
+                          >
+                            {{ item["OP_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl-12"
+                      *ngIf="model_op_caisse[15]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_operateur" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameOperateur"
+                          id="idOperateur"
+                          [(ngModel)]="model_op_caisse[15]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_gerant;
+                              let ind = index
+                            "
+                            value="{{ item['OP_CODEOPERATEUR'] }}"
+                          >
+                            {{ item["OP_NOMPRENOM"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_ref_de_la_piece" | translate }}
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameRefPiece"
+                          id="idRefPiece"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_op_caisse[2]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "compta_libelle_op" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameLibelleOperation"
+                          id="idLibelleOperation"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_op_caisse[3]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_nom_recepteur" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNomRecepteur"
+                          id="idNomRecepteur"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_op_caisse[9]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "compta_contact" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameContact"
+                          id="idContact"
+                          [(ngModel)]="model_op_caisse[4]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "compta_email" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameEmail"
+                          id="idEmail"
+                          [(ngModel)]="model_op_caisse[5]['valeur']"
+                          (change)="
+                            _toolsService._emailtoLowerCase(
+                              model_op_caisse,
+                              '5'
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+
+                    <hr />
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_mode_reglement" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameModeReglement"
+                          id="idModeReglement"
+                          [(ngModel)]="model_op_caisse[10]['valeur']"
+                          (change)="
+                            ChoixDuModeReglement(model_op_caisse[10]['valeur'])
+                          "
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of filteredModesReglement;
+                              let ind = index
+                            "
+                            value="{{ item['MR_CODEMODEREGLEMENT'] }}"
+                          >
+                            {{ item["MR_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_montant_en_chiffre" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMontant"
+                          id="idMontant"
+                          [(ngModel)]="model_op_caisse[7]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '7',
+                              model_op_caisse
+                            )
+                          "
+                          (change)="ConvertionDuMontantEnLettre(7, 11)"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label>{{
+                          "compta_montant_en_lettre" | translate
+                        }}</label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameMontantLettre"
+                          id="idMontantLettre"
+                          [(ngModel)]="model_op_caisse[11]['valeur']"
+                          [disabled]="model_op_caisse[11]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="mail-reports">
+                        <ul class="nav">
+                          <li>
+                            <a
+                              href="javascript:;"
+                              class="ford-angle"
+                              (click)="AjouterLeModeDeReglement()"
+                              title="Ajouter le mode de règlement"
+                              ><img
+                                alt=""
+                                src="assets/img/icons/forward-icon-03.svg"
+                            /></a>
+                          </li>
+                          <b style="color: #0b5ed7"
+                            >Total opération : {{ montant_total_facture }} F
+                            CFA</b
+                          >
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="tab_affiche_mode_regle.length != 0">
+                      <div class="col-xl-2"></div>
+                      <div class="col-xl-8">
+                        <div id="accordion" class="custom-faq mb-3">
+                          <div
+                            class="card mb-1"
+                            *ngFor="
+                              let item of tab_affiche_mode_regle;
+                              let id = index
+                            "
+                          >
+                            <div class="card-header" id="headingOne">
+                              <div class="row">
+                                <div class="col">
+                                  <h5 class="accordion-faq m-0">
+                                    <a
+                                      class="text-dark"
+                                      data-bs-toggle="collapse"
+                                      href="#collapse{{ id }}"
+                                      aria-expanded="true"
+                                      style="text-decoration: none"
+                                    >
+                                      <i
+                                        class="mdi mdi-help-circle me-1 text-primary"
+                                      ></i>
+                                      {{ item["libelle_mode_reglement"] }}
+                                    </a>
+                                  </h5>
+                                </div>
+                                <div class="col" style="text-align: end">
+                                  <button
+                                    type="button"
+                                    class="btn btn-light"
+                                    (click)="SupprimerModeReglement(id)"
+                                  >
+                                    Supprimer
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              id="collapse{{ id }}"
+                              class="collapse show"
+                              aria-labelledby="headingOne"
+                              data-bs-parent="#accordion"
+                            >
+                              <div class="card-body">
+                                <span
+                                  ><b
+                                    >{{
+                                      "compta_montant_en_chiffre" | translate
+                                    }}:</b
+                                  >
+                                  {{ item["montant_chiffre"] }}</span
+                                ><br />
+                                <span
+                                  ><b
+                                    >{{
+                                      "compta_montant_en_lettre" | translate
+                                    }}:</b
+                                  >
+                                  {{ item["montant_lettre"] }}</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end #accordions-->
+                      </div>
+                      <div class="col-xl-2"></div>
+                    </div>
+
+                    <hr
+                      *ngIf="
+                        model_op_caisse[12]['afficher'] ||
+                        model_op_caisse[13]['afficher'] ||
+                        model_op_caisse[14]['afficher']
+                      "
+                    />
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_op_caisse[12]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_num_cheque" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumCheque"
+                          id="idNumCheque"
+                          [(ngModel)]="model_op_caisse[12]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_op_caisse[13]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_banque" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameBanque"
+                          id="idBanque"
+                          [(ngModel)]="model_op_caisse[13]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl"
+                      *ngIf="model_op_caisse[14]['afficher']"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_num_virement" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNimVirement"
+                          id="idNumVirement"
+                          [(ngModel)]="model_op_caisse[14]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="
+                            EnregistrerOpDeCaisse(
+                              model_op_caisse,
+                              [0, 1, 7, 9, 10]
+                            )
+                          "
+                        >
+                          {{ "btn_enregistrer" | translate }}
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary cancel-form"
+                          (click)="AnnulerAction()"
+                        >
+                          {{ "btn_annuler" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

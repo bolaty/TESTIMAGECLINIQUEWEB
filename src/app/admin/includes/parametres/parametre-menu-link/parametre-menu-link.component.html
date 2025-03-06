@@ -1,0 +1,67 @@
+<div class="settings-menu-links">
+  <ul class="nav nav-tabs menu-tabs">
+    <li
+      class="nav-item {{ op_actif }}"
+      (click)="ChoixDeLongletParam('idOperateur')"
+      id="idOperateur"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_operateur" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ ag_actif }}"
+      (click)="ChoixDeLongletParam('idAgence')"
+      id="idAgence"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_agence" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ pro_actif }}"
+      (click)="ChoixDeLongletParam('idProfil')"
+      id="idProfil"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_profil" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ service_actif }}"
+      (click)="ChoixDeLongletParam('idService')"
+      id="idService"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_service" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ jt_actif }}"
+      (click)="ChoixDeLongletParam('idJourneeTravail')"
+      id="idJourneeTravail"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_journee_travail" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ param_actif }}"
+      (click)="ChoixDeLongletParam('idParametrage')"
+      id="idParametrage"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_parametrages" | translate
+      }}</a>
+    </li>
+    <li
+      class="nav-item {{ lg_actif }}"
+      (click)="ChoixDeLongletParam('idLangues')"
+      id="idLangues"
+    >
+      <a class="nav-link" style="cursor: pointer">{{
+        "param_btn_langue" | translate
+      }}</a>
+    </li>
+  </ul>
+</div>

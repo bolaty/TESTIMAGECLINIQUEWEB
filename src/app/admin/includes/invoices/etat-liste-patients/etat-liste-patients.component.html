@@ -1,0 +1,96 @@
+
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="ImprimerLetat()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','Patient')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','Patient')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+
+  <app-entete-invoice title="{{ LibelleEtat }}"></app-entete-invoice>
+
+  <div class="content" #contentBrouillard id="pageGlobale">
+    <div class="container">
+      <table class="table-container">
+        <!-- entete -->
+        <tr>
+          <th >NOM ET PRENOMS</th>
+          <th >DATE DE CREATION</th>
+          <th >OPERATEUR</th>
+          <th >N° DOSSIER</th>
+          <th >MATRICULE</th>
+          <th >SEXE</th>
+          <th >STATUT</th>
+          <th >CONTACT</th>
+          <th >EMAIL</th>
+          <th >PROFESSION</th>
+          <th >LIEU D'HABITATION</th>
+          <th >SOLDE</th>
+        </tr>
+  
+        <!-- section des billets -->
+        <tr *ngFor="let item of session_listepatient; let id = index">
+          <td>{{ item.PT_NOMPRENOMS }}</td>
+          <td style="width: 260px">{{ item.PT_DATESAISIE }}</td>
+          <td style="text-align: center; width: 300px">
+            {{ item.OP_NOMPRENOM }}
+          </td>
+          <td style="text-align: center; width: 300px">
+            {{ item.PT_CODEPATIENT }}
+          </td>
+          <td style="text-align: center; width: 300px">
+            {{ item.PT_MATRICULE }}
+          </td>
+          <td style="text-align: center; width: 300px">{{ item.SX_LIBELLE }}</td>
+          <td style="text-align: center; width: 300px">
+            {{ item.STAT_LIBELLE }}
+          </td>
+          <td style="text-align: center; width: 300px">{{ item.PT_CONTACT }}</td>
+          <td style="text-align: center; width: 300px">{{ item.PT_EMAIL }}</td>
+          <td style="text-align: center; width: 300px">{{ item.PF_LIBELLE }}</td>
+          <td style="text-align: center; width: 300px">
+            {{ item.PT_LIEUHABITATION }}
+          </td>
+          <td style="text-align: center; width: 300px">
+            {{ item.ET_SOLDECOMPTE }}
+          </td>
+        </tr>
+      </table>
+      <div style="text-align: end">
+        {{ session_listepatient.length }}
+        patient(s)
+      </div>
+    </div>
+  
+    <!--   <div class="col-12">
+      <div class="doctor-submit text-end">
+        <button
+          class="btn btn-primary submit-form me-2 hide-on-print"
+          (click)="TelechargerVersionPdf()"
+        >
+          Imprimer
+        </button>
+      </div>
+    </div> -->
+  </div>
+  <!-- tableau du billetage -->
+</div>
+

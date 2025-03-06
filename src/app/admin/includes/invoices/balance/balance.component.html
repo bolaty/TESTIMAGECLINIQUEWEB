@@ -1,0 +1,214 @@
+&#160; &#160; &#160;&#160; &#160; &#160;
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="Telecharger()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','Balance')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','Balance')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+  <!-- en-tete de page -->
+  <app-entete-invoice
+    title="BALANCE PERIODIQUE DU {{
+      session_brouillard_de_caisse[0]['objetEnvoi']['Objet'][0]['DATEDEBUT']
+    }} AU {{
+      session_brouillard_de_caisse[0]['objetEnvoi']['Objet'][0]['DATEFIN']
+    }}"
+    [show_agent_immo_agree]="false"
+  ></app-entete-invoice>
+  <!-- en-tete de page -->
+  <!--   <div class="col-12">
+    <div class="doctor-submit text-end">
+      <button
+        class="btn btn-primary submit-form me-2 hide-on-print"
+        (click)="Telecharger()"
+      >
+        Imprimer
+      </button>
+    </div>
+  </div> -->
+  <!-- <div class="card-body"> -->
+  <!-- <div class="d-flex justify-content-between flex-wrap"> -->
+  <!-- <div class="my-3 me-3"> -->
+  <div class="content-2" #contentBrouillard id="pageGlobale">
+    <div class="container-fluid"></div>
+    <div class="row">
+      <!-- *ngFor="let item of session_brouillard_de_caisse; let id = index"  -->
+      <div class="col-12 my-3">
+        AGENCE : {{ session_brouillard_de_caisse[0].AG_RAISONSOCIAL }}
+      </div>
+      <div class="col-12" style="margin-top: 10px">
+        <table class="table-container">
+          <!-- entete -->
+          <tr>
+            <th rowspan="2">COMPTE</th>
+            <th rowspan="2">LIBELLE</th>
+            <th colspan="2">SOLDE DEBUT DE PERIODE</th>
+            <th colspan="2">MOUVEMENT DE LA PERIODE</th>
+            <th colspan="2">SOLDE DE LA PERIODE</th>
+          </tr>
+          <tr>
+            <th>DEBIT</th>
+            <th>CREDIT</th>
+            <th>DEBIT</th>
+            <th>CREDIT</th>
+            <th>DEBIT</th>
+            <th>CREDIT</th>
+          </tr>
+
+          <!-- section des billets -->
+          <tr
+            *ngFor="let elm of session_brouillard_de_caisse; let index = index"
+          >
+            <td>{{ elm.PL_NUMCOMPTE }}</td>
+            <td style="width: 260px">{{ elm.PL_LIBELLE }}</td>
+            <td id="texte-end">
+              {{ elm.MOUVEMENTPRECEDENTDEBIT.toLocaleString() }}
+            </td>
+            <td id="texte-end">
+              {{ elm.MOUVEMENTPRECEDENTCREDIT.toLocaleString() }}
+            </td>
+            <td id="texte-end">
+              {{ elm.MOUVEMENTPERIODEDEBIT.toLocaleString() }}
+            </td>
+            <td id="texte-end">
+              {{ elm.MOUVEMENTPERIODECREDIT.toLocaleString() }}
+            </td>
+            <td id="texte-end">{{ elm.SOLDEPERIODEDEBIT.toLocaleString() }}</td>
+            <td id="texte-end">
+              {{ elm.SOLDEPERIODECREDIT.toLocaleString() }}
+            </td>
+          </tr>
+
+          <!--  section des totaux -->
+          <tr class="total-row">
+            <td colspan="2">Total</td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALMOUVEMENTPRECEDENTDEBIT.toLocaleString()
+              }}
+            </td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALMOUVEMENTPRECEDENTCREDIT.toLocaleString()
+              }}
+            </td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALMOUVEMENTPERIODEDEBIT.toLocaleString()
+              }}
+            </td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALMOUVEMENTPERIODECREDIT.toLocaleString()
+              }}
+            </td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALSOLDEPERIODEDEBIT.toLocaleString()
+              }}
+            </td>
+            <td id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALSOLDEPERIODECREDIT.toLocaleString()
+              }}
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Ecart</td>
+            <td colspan="2" id="texte-end">
+              {{ total_ecart_1.toLocaleString() }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{ total_ecart_2.toLocaleString() }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{ total_ecart_3.toLocaleString() }}
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Total charge</td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALCHARGEPRECEDENT.toLocaleString()
+              }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALCHARGEENCOURS.toLocaleString()
+              }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALCHARGEFINAL.toLocaleString()
+              }}
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Total produit</td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALPRODUITPRECEDENT.toLocaleString()
+              }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALPRODUITENCOURS.toLocaleString()
+              }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{
+                session_brouillard_de_caisse[0].TOTALPRODUITFINAL.toLocaleString()
+              }}
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Resultat net provisoire</td>
+            <td colspan="2" id="texte-end">
+              {{ total_result_net_pro_1.toLocaleString() }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{ total_result_net_pro_2.toLocaleString() }}
+            </td>
+            <td colspan="2" id="texte-end">
+              {{ total_result_net_pro_3.toLocaleString() }}
+            </td>
+          </tr>
+        </table>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <!-- pied de page -->
+  <app-pied-de-page-invoice></app-pied-de-page-invoice>
+  <!-- pied de page -->
+  <!--   <div class="col-12">
+    <div class="doctor-submit text-end">
+      <button
+        class="btn btn-primary submit-form me-2 hide-on-print"
+        (click)="TelechargerVersionPdf()"
+      >
+        Imprimer
+      </button>
+    </div>
+  </div> -->
+</div>

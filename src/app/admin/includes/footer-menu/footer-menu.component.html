@@ -1,0 +1,31 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-inner-wrap">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="center-footer">
+            <p class="pull-right mb-0" style="font-size: 12px">
+              <!-- Hand crafted & made with <i class="fa fa-heart font-secondary"></i> -->
+              <b>Agence</b> : {{session_de_connexion['AG_CODEAGENCE']}} -
+              {{session_de_connexion['AG_RAISONSOCIAL']}} |
+              <b>Opérateur</b> :
+              {{session_de_connexion['OP_NOMPRENOM']}}  |
+              <b>Exercice</b> : {{session_de_connexion['EX_EXERCICE']}}  |
+              <b>Journée de travail</b>:
+              {{session_de_connexion['JT_DATEJOURNEETRAVAIL']}} |
+              <b>Date du serveur</b> :
+              {{date}}
+            </p>
+          </div>
+          <!-- Copyright -->
+          <div class="bottom-footer">
+            <app-copyright entreprise="MgDigitalPlus"></app-copyright>
+          </div>
+          <!-- Copyright -->
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </div>
+</footer>

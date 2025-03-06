@@ -1,0 +1,413 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div>
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "mdg_Guichet" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "mdg_GuichetOperation" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>{{ "guichet_details_op" | translate }}</h4>
+                      </div>
+                      <div
+                        class="col"
+                        style="text-align: end; font-weight: bold"
+                      >
+                        {{ solde_compte_op?.toLocaleString() ?? 0 }} FCFA
+                      </div>
+                    </div>
+                    <div
+                      class="col-12"
+                      *ngFor="
+                        let item of ComboTypeshemacomptable;
+                        let index = index
+                      "
+                    >
+                      <div class="input-block select-gender">
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input
+                              type="radio"
+                              name="gender"
+                              class="form-check-input mt-0"
+                              (click)="ChoixEcran(item, item.TS_LIBELLE)"
+                              value="{{ item.TS_CODETYPESCHEMACOMPTABLE }}"
+                            />{{ item.TS_LIBELLE }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!--<div class="col-12 ">
+                        <div class="input-block select-gender">
+                          <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input
+                                type="radio"
+                                name="gender"
+                                class="form-check-input mt-0"
+
+                              />Retrait
+                            </label>
+                          </div>
+                        </div>
+                    </div>-->
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card" *ngIf="page">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-9">
+                      <div class="form-heading">
+                        <h4>{{ "guichet_details_client" | translate }}</h4>
+                      </div>
+                    </div>
+                    <div class="col-3 numero_bordereau">
+                      N° Bordereau : <b>{{ Bordereau }}</b>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "pati_num_dossier" | translate }} </label>
+                        <input
+                          (dblclick)="selectCompte()"
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumDoc"
+                          id="idNumdossier"
+                          [readOnly]="model_guichet[0]['readOnly']"
+                          [(ngModel)]="model_guichet[0]['valeur']"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_nom" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          (dblclick)="selectCompte()"
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNom"
+                          id="idnom"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          [(readOnly)]="model_guichet[1]['readOnly']"
+                          inputmode="latin"
+                          [(ngModel)]="model_guichet[1]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <hr />
+                    <br /><br />
+
+                    <div class="col-12 col-md-4 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "guichet_Type_piece" | translate }} </label>
+                        <select
+                          class="form-control select"
+                          name="nameType_piece"
+                          id="idtypepiece"
+                          [(ngModel)]="model_guichet[2]['valeur']"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            value="{{ item.PI_CODEPIECE }}"
+                            *ngFor="
+                              let item of ComboTypespiece;
+                              let index = index
+                            "
+                          >
+                            {{ item.PI_LIBELLEPIECE }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "guichet_N_piece" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameN_piece"
+                          style="text-transform: uppercase"
+                          id="idNpiece"
+                          [(ngModel)]="model_guichet[3]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "guichet_Remettant" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameRemettant"
+                          id="idRemettant"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_guichet[4]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label>{{ "guichet_Contact" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameContact"
+                          style="text-transform: uppercase"
+                          id="idContact"
+                          [(ngModel)]="model_guichet[5]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "guichet_Reference_piece" | translate }}
+                        </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          style="text-transform: uppercase"
+                          name="nameReference_piece"
+                          id="idRefpiece"
+                          [(ngModel)]="model_guichet[6]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "guichet_Autre_libelle" | translate }}
+                          </label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameAutre_libelle"
+                          id="idAutreLibelle"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_guichet[7]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "pati_mode_reglement" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameModeReglement"
+                          id="idModeReglement"
+                          [(ngModel)]="model_guichet[8]['valeur']"
+                        >
+                          <option value="">Faites un choix</option>
+                          <option
+                            *ngFor="
+                              let item of tab_liste_mode_regl;
+                              let ind = index
+                            "
+                            value="{{ item['MR_CODEMODEREGLEMENT'] }}"
+                          >
+                            {{ item["MR_LIBELLE"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table
+                        class="table border-0 custom-table comman-table datatable mb-0"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Libellé opération</th>
+                            <th>Montant</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="ListeCaracteristiques.length > 0">
+                          <tr>
+                            <th class="profile-image" rowspan="5">
+                              {{ ListeCaracteristiques[0].SC_LIBELLE }}
+                            </th>
+                            <td class="profile-image">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder=""
+                                name="Montant"
+                                id="idMontant"
+                                (change)="
+                                  CalculMontant(
+                                    ListeCaracteristiques[0].SC_MONTANTNUMERIQUE
+                                  )
+                                "
+                                [(ngModel)]="
+                                  ListeCaracteristiques[0].SC_MONTANTNUMERIQUE
+                                "
+                                (input)="FormatageMontantAlaSaisie($event)"
+                                pattern="^[\d]+$"
+                                maxlength="20"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <hr />
+                      <br /><br />
+                      <div class="col-12">
+                        <div class="doctor-submit text-end">
+                          <button
+                            class="btn btn-primary submit-form me-2"
+                            (click)="EnregistrerGuichet(model_guichet)"
+                          >
+                            {{ "btn_enregistrer" | translate }}
+                          </button>
+                          <button
+                            type="submit"
+                            class="btn btn-primary cancel-form"
+                            (click)="Initialisation()"
+                          >
+                            {{ "btn_annuler" | translate }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          class="modal-title"
+          id="myCenterModalLabel"
+          style="font-size: small"
+        >
+          Fermer
+          <strong>/</strong>
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">NUMERO DOSSIER</th>
+                        <th scope="col">NOM & PRENOMS</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="tab_liste_patient.length > 0">
+                      <tr
+                        *ngFor="
+                          let items of tab_liste_patient;
+                          let index = index
+                        "
+                        (dblclick)="selectPatient(items)"
+                      >
+                        <td>{{ items.PT_CODEPATIENT }}</td>
+                        <td>{{ items.PT_NOMPRENOMS }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

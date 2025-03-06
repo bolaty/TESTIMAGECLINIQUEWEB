@@ -1,0 +1,611 @@
+<div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+  
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+  
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "dashb_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "dashb_filigranne_2" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+  
+        <div class="good-morning-blk">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="morning-user">
+                <h2>
+                 Opération , <span>Ordinaire</span>
+                </h2>
+                <p>{{ "dashb_bonne_journee" | translate }}</p>
+              </div>
+            </div>
+            <div class="col-md-6 position-blk">
+              <div class="morning-user">
+                <h2>
+                    N° bordereau : {{Bordereau}}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        
+  
+        <div class="row">
+          <div class="col-12 col-md-12 col-xl">
+            <div class="card top-departments">
+              <div class="card-header">
+                <h4 class="card-title mb-0">
+                    Saisie des écritures comptables
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="activity-top">
+                      <div class="activity-boxs comman-flex-center">
+                        <img
+                          src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="departments-list">
+                        <h4>Solde compte</h4>
+                        <p> {{Soldecompte}} F CFA</p>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  <div class="col-4">
+                    
+                    <div class="activity-top">
+                      <div class="activity-boxs comman-flex-center">
+                        <img
+                          src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="departments-list">
+                        <h4>Solde compte tiers</h4>
+                        <p> {{Soldecomptetiers}} F CFA</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="activity-top">
+                      <div class="activity-boxs comman-flex-center">
+                        <img
+                          src="assets/img/icons/icons8-cochez-toutes-les.svg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="departments-list">
+                        <h4>Solde opération</h4>
+                        <p> {{Soldeoperation | number:'1.0-0'}} F CFA</p>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- module de recherche -->
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <form>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-heading">
+                          <h4>
+                            Saisie des écritures comptables
+                          </h4>
+                        </div>
+                        <div
+                          class="form-heading"
+                            style="text-align: end; font-weight: bold;font-size: 20px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"
+                          >
+                          <em>
+                            {{ InformationCompteTiers?.PT_NOMPRENOMS }}
+                          </em> 
+                        </div>
+                        <br>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-4">
+                        <div class="input-block local-forms" >
+                          <label>Journal</label>
+                          <select
+                            class="form-control select"
+                            name="nameJournal"
+                            id="idJournal"
+                            [(ngModel)]="formOperationDivers[0]['valeur']"
+                            [disabled]="formOperationDivers[0]['valeur'] !== ''"
+                          >
+                            <option value="">Faites un choix</option>
+                            <option
+                              *ngFor="let item of ComboJournal;let index = index"
+                              value="{{ item.JO_CODEJOURNAL }}">
+                              {{ item.JO_LIBELLE }}
+                            </option>      
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-4">
+                        <div class="input-block local-forms">
+                          <label>Type tiers </label>
+                          <select
+                            class="form-control select"
+                            name="nameTypetiers"
+                            id="idTypetiers"
+                            [(ngModel)]="formOperationDivers[1]['valeur']"
+                          >
+                            <option value="">Faites un choix</option>
+                            <option
+                              *ngFor="let item of ComboTypeTiers;let index = index"
+                              value="{{ item.TC_CODETYPETIERS }}">
+                              {{ item.TC_LIBELLE }}
+                            </option> 
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-4">
+                        <div class="input-block local-forms cal-icon">
+                          <label
+                            >Date pièce
+                            <span class="login-danger">*</span></label
+                          >
+                          <input
+                            class="form-control datetimepicker"
+                            [appDatetimepicker]="{
+                              enableTime: false,
+                              dateFormat: 'd/m/Y',
+                              allowInput: true
+                            }"
+                            type="text"
+                            placeholder=""
+                            id="idDatepiece"
+                            name="nameDateDebut"
+                            maxlength="10"
+                            [(ngModel)]="formOperationDivers[2]['valeur']"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Compte général </label>
+                          <input
+                            (dblclick)="chargementComboNumCompte(formOperationDivers[3]['valeur'])"
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            id="idComptegeneral"
+                            name="nameComptegeneral"
+                            [(ngModel)]="formOperationDivers[3]['valeur']"
+                          />
+                          <em style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 15px;color: blueviolet;text-transform: lowercase;">{{ InformationCompteGneral?.PL_LIBELLE }}</em>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Compte tiers </label>
+                          <input
+                            (dblclick)="ChargerLaListePatient()"
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            id="idComptetiers"
+                            name="nameComptetiers"
+                            maxlength="10"
+                            [(ngModel)]="formOperationDivers[4]['valeur']"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Référence pièce </label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            id="idReferencepiece"
+                            name="nameReferencepiece"
+                            [(ngModel)]="formOperationDivers[5]['valeur']"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Libellé opération </label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            id="idLibelleoperation"
+                            name="nameLibelleoperation"
+                            [(ngModel)]="formOperationDivers[6]['valeur']"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Débit </label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            style="text-align: right"
+                            id="idDebit"
+                            name="nameDebit"
+                            [(ngModel)]="formOperationDivers[7]['valeur']"
+                            (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '7',
+                              formOperationDivers
+                            )
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                        <div class="input-block local-forms">
+                          <label>Crédit </label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            placeholder=""
+                            style="text-transform: uppercase"
+                            style="text-align: right"
+                            id="idCredit"
+                            name="nameCredit"
+                            [(ngModel)]="formOperationDivers[8]['valeur']"
+                            (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '8',
+                              formOperationDivers
+                            )
+                            "
+                          />
+                        </div>
+                      </div>
+                     
+  
+                      <div class="col-12">
+                        <div class="doctor-submit text-end">
+                          <div class="row">
+                            <div class="col">
+                              <div class="add-group" >
+                                <a
+                                  (click)="ajouterLigne(formOperationDivers)"
+                                  style="cursor: pointer"
+                                  class="btn btn-primary add-pluss ms-2"
+                                  title="Ajouter une ligne"
+                                  ><img src="assets/img/icons/plus.svg" alt=""
+                                /></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- module de recherche -->
+  
+          <!-- module liste -->
+          <div class="row" *ngIf="data.length > 0">
+            <div class="col-sm-12">
+              <div class="card card-table show-entire">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table
+                      class="table border-0 custom-table comman-table datatable mb-0"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Date pièce</th>
+                          <th>Compte général</th>
+                          <th>Compte tiers</th>
+                          <th>Référence pièce</th>
+                          <th>Libellé opération</th>
+                          <th>Débit</th>
+                          <th>Crédit</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ligne of data; let i = index">
+                           <!-- <td class="profile-image" *ngFor="let field of formOperationDivers" *ngIf="field.afficher">
+                              {{ ligne[field.id] }}
+                            </td>-->
+                            <ng-container *ngFor="let field of formOperationDivers">
+                              <td class="profile-image" *ngIf="field.afficher">
+                                <!-- Vérifier si le champ est Débit ou Crédit pour appliquer le format -->
+                                <ng-container *ngIf="field.id === 'idDebit' || field.id === 'idCredit'">
+                                  {{ ligne[field.id] | number:'1.0-0' }}
+                                </ng-container>
+                                <ng-container *ngIf="field.id !== 'idDebit' && field.id !== 'idCredit'">
+                                  {{ ligne[field.id] }}
+                                </ng-container>
+                              </td>
+                            </ng-container>
+                            
+                            
+                              <td class="text-end">
+                                <div class="dropdown dropdown-action">
+                                  <a
+                                    href="#"
+                                    class="action-icon dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    ><i class="fa fa-ellipsis-v"></i
+                                  ></a>
+                                  <div class="dropdown-menu dropdown-menu-end">
+                                    <a
+                                      class="dropdown-item"
+                                      href="#"
+                                      (click)="onMenuClick($event, i)"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#danger-alert-modal"
+                                      ><i class="fa fa-undo m-r-5"></i> supression</a
+                                    >
+                                    <a
+                                      class="dropdown-item"
+                                      href="#"
+                                      (click)="
+                                        modifierLigne($event,i)
+                                      "
+                                      ><i class="fa fa-th-list m-r-5"></i> modification</a
+                                    >
+                                  
+                                  </div>
+                                </div>
+                              </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            {{ totalDebit | number:'1.0-0' }}
+                          </td>
+                          <td>
+                            {{ totalCredit | number:'1.0-0' }}
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+
+                  <hr> <br>
+                  <!-- module liste -->
+                  <div class="col-12">
+                    <div class="doctor-submit text-end">
+                      <button
+                        class="btn btn-primary submit-form me-2"
+                       (click)="EnregistrerOperationOD()"
+                      >
+                        {{ "btn_enregistrer" | translate }}
+                      </button>
+                     
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  
+  <!-- Danger Alert Modal -->
+<div
+id="danger-alert-modal"
+class="modal fade"
+tabindex="-1"
+role="dialog"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-sm">
+  <div class="modal-content modal-filled bg-danger">
+    <div class="modal-body p-4">
+      <div class="text-center">
+        <i class="dripicons-wrong h1 text-white"></i>
+        <h4 class="mt-2 text-white">Suppression ligne !</h4>
+        <p class="mt-3 text-white">
+          Cette action est irreversible. Voulez-vous continuer ?
+        </p>
+        <button
+          type="button"
+          class="btn btn-light my-2"
+          data-bs-dismiss="modal"
+          (click)="supprimerLigne(index)"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          class="modal-title"
+          id="myCenterModalLabel"
+          style="font-size: small"
+        >
+          Fermer
+          <strong>/</strong>
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">N° compte</th>
+                        <th scope="col">Libellé</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let ligne of ComboNumCompte; let index = index"
+                        (click)="SelectionLigneCompte(index, ligne)"
+                      >
+                        <td>{{ ligne.PL_NUMCOMPTE }}</td>
+                        <td>{{ ligne.PL_LIBELLE }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal2"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          class="modal-title"
+          id="myCenterModalLabel"
+          style="font-size: small"
+        >
+          Fermer
+          <strong>/</strong>
+        </span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <!-- /Table Header -->
+
+                <div class="table-responsive">
+                  <table
+                    class="table border-0 custom-table comman-table datatable mb-0"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">NUMERO DOSSIER</th>
+                        <th scope="col">NOM & PRENOMS</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="tab_liste_patient.length > 0">
+                      <tr
+                        *ngFor="
+                          let items of tab_liste_patient;
+                          let index = index
+                        "
+                        (dblclick)="selectPatient(items)"
+                      >
+                        <td>{{items.PT_CODEPATIENT}}</td>
+                        <td>{{items.PT_NOMPRENOMS}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

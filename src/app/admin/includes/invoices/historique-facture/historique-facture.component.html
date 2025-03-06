@@ -1,0 +1,69 @@
+<div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div>
+
+<app-entete-invoice
+  title="HISTORIQUE FACTURE"
+  [periode_du]="session_infos['date1']"
+  [periode_au]="session_infos['date2']"
+></app-entete-invoice>
+
+<div class="container">
+  <div>
+    <div class="col" style="text-align: center"><span>Journée 1</span></div>
+
+    <table>
+      <!-- entete -->
+      <tr>
+        <th>Date</th>
+        <th style="width: 490px">Libellé facture</th>
+        <th style="width: 200px">Montant</th>
+      </tr>
+
+      <!-- section des billets -->
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">VERSEMENT ESPECE éffectué par :DFGD</td>
+        <td class="classmontant">100 000</td>
+      </tr>
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">VERSEMENT ESPECE éffectué par :DFGD</td>
+        <td class="classmontant">100 000</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <div class="col" style="text-align: center"><span>Journée 2</span></div>
+
+    <table>
+      <!-- entete -->
+      <tr>
+        <th>Date</th>
+        <th style="width: 490px">Libellé facture</th>
+        <th style="width: 200px">Montant</th>
+      </tr>
+
+      <!-- section des billets -->
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">VERSEMENT ESPECE éffectué par :DFGD</td>
+        <td class="classmontant">100 000</td>
+      </tr>
+      <tr class="">
+        <td>01/10/2024</td>
+        <td class="classlibelle">VERSEMENT ESPECE éffectué par :DFGD</td>
+        <td class="classmontant">100 000</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- tableau du billetage -->

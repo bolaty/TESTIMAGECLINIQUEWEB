@@ -1,0 +1,161 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div>
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "trans_ra_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "trans_ra_filigranne_2" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>
+                          {{ "trans_ra_details_du_rapport" | translate }}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <!-- tableau du billetage -->
+                    <div class="container">
+                      <table class="table-container">
+                        <!-- entete -->
+                        <tr>
+                          <th>
+                            {{ "trans_ra_title_tab_acte" | translate }}
+                          </th>
+                          <th>
+                            {{ "trans_ra_title_tab_caisse" | translate }}
+                          </th>
+                          <th>
+                            {{ "trans_ra_title_tab_montant" | translate }}
+                          </th>
+                        </tr>
+
+                        <!-- section des billets -->
+                        <tr>
+                          <td rowspan="7">Consultation.s</td>
+                          <td>Caisse espèce</td>
+                          <td style="text-align: end">10 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Wave</td>
+                          <td style="text-align: end">5 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Orange</td>
+                          <td style="text-align: end">2 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Moov</td>
+                          <td style="text-align: end">1 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot MTN</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Virement</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Chèque</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+
+                        <!-- section des pieces -->
+                        <tr>
+                          <td rowspan="7">Hospitalisation.s</td>
+                          <td>Caisse espèce</td>
+                          <td style="text-align: end">10 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Wave</td>
+                          <td style="text-align: end">5 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Orange</td>
+                          <td style="text-align: end">2 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot Moov</td>
+                          <td style="text-align: end">1 000 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Dépot MTN</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Virement</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+                        <tr>
+                          <td>Chèque</td>
+                          <td style="text-align: end">500 F CFA</td>
+                        </tr>
+
+                        <!-- section des totaux -->
+                        <tr class="total-row">
+                          <td colspan="2">{{ "compta_total" | translate }}</td>
+                          <td style="text-align: end">1 000 000 FCFA</td>
+                        </tr>
+                      </table>
+                    </div>
+                    <!-- tableau du billetage -->
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="AllerALenvoi()"
+                        >
+                          {{ "btn_apercu" | translate }}
+                        </button>
+                        <!--  <button class="btn btn-primary cancel-form">
+                          {{ "btn_annuler" | translate }}
+                        </button> -->
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<!-- <div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div> -->
+
+<!-- <div class="container"> -->
+<div class="header">
+  <div class="left">
+    {{ session_de_connexion["AG_RAISONSOCIAL"] }}<br />
+    {{ session_de_connexion["AG_BOITEPOSTAL"] }}<br />
+    {{ session_de_connexion["AG_TELEPHONE"] }}<br />
+    {{ session_de_connexion["AG_TELEPHONE"] }}
+  </div>
+  <div class="right">
+    {{ dateEdition }}
+    <!--<div class="col-12">
+      <br />
+      <br />
+      <div class="doctor-submit text-end">
+        <button
+          class="btn btn-primary submit-form me-2 hide-on-print"
+          (click)="ImprimerLetat()"
+        >
+          Imprimer
+        </button>
+      </div>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-10">
+    <div
+      class="title"
+      style="text-align: center"
+      *ngIf="!periode_du && !periode_au"
+    >
+      {{ title }}
+    </div>
+    <div
+      class="title"
+      style="text-align: center"
+      *ngIf="periode_du && periode_au"
+    >
+      {{ title }} DU {{ periode_du }} AU {{ periode_au }}
+    </div>
+    <div
+      class="title"
+      style="text-align: center"
+      *ngIf="!periode_du && periode_au"
+    >
+      {{ title }} AU {{ periode_au }}
+    </div>
+  </div>
+</div>
+
+<!-- </div> -->

@@ -1,0 +1,66 @@
+<!-- <div class="col-12">
+  <div class="doctor-submit text-end">
+    <button
+      class="btn btn-primary submit-form me-2 hide-on-print"
+      (click)="ImprimerLetat()"
+    >
+      Imprimer
+    </button>
+  </div>
+</div> -->
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="ImprimerLetat()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','PointParActe')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','PointParActe')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+
+  <app-entete-invoice
+  title="POINT PAR ACTE"
+  [periode_du]="
+    session_point_par_acte[0]['objetEnvoi']['Objet'][0]['DATEDEBUT']
+  "
+  [periode_au]="session_point_par_acte[0]['objetEnvoi']['Objet'][0]['DATEFIN']"
+></app-entete-invoice>
+
+<div class="container">
+  <table class="table-container">
+    <!-- entete -->
+    <tr>
+      <th>Acte</th>
+      <th>Montant</th>
+    </tr>
+
+    <tr *ngFor="let item of session_point_par_acte">
+      <td style="text-align: start">{{ item["ACT_LIBELLE"] }}</td>
+      <td style="width: 260px; text-align: end">
+        {{ item["MONTANT"].toLocaleString() }} F CFA
+      </td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <th style="text-align: end">{{ total.toLocaleString() }} F CFA</th>
+    </tr>
+  </table>
+</div>
+</div>
+

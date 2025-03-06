@@ -1,0 +1,86 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "param_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active" style="cursor: pointer">
+                {{ "param_filigranne_10" | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <!-- debut settings-menu-links -->
+      <app-parametre-menu-link lg_actif="active"></app-parametre-menu-link>
+      <!-- fin settings-menu-links -->
+
+      <div class="row">
+        <div class="col-12 col-md-12 col-xl-6">
+          <div class="treat-box mb-2">
+            <div class="user-imgs-blk">
+              <img src="assets/img/flags/flag_fr.png" alt="" />
+              <div class="active-user-detail flex-grow-1">
+                <h4>{{ "param_lg_francais" | translate }}</h4>
+                <p>{{ "param_lib_langue_fr" | translate }}</p>
+              </div>
+            </div>
+            <a
+              style="cursor: pointer; text-decoration: none"
+              class="custom-badge status-green"
+              (click)="ActiverLaLangue('idLangueFr', 'fr')"
+              id="idLangueFr"
+              >{{ "btn_activer" | translate }}</a
+            >
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-xl-6">
+          <div class="treat-box mb-2">
+            <div class="user-imgs-blk">
+              <img src="assets/img/flags/flag_en.png" alt="" />
+              <div class="active-user-detail flex-grow-1">
+                <h4>{{ "param_lg_anglais" | translate }}</h4>
+                <p>{{ "param_lib_langue_en" | translate }}</p>
+              </div>
+            </div>
+            <a
+              style="cursor: pointer; text-decoration: none"
+              class="custom-badge status-green"
+              (click)="ActiverLaLangue('idLangueEn', 'en')"
+              id="idLangueEn"
+              >{{ "btn_activer" | translate }}</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content -->
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>

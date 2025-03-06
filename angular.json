@@ -1,0 +1,129 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "HOPITAL_FPPN_CLIENT": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hopital-fppn-client",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "node_modules/flatpickr/dist/flatpickr.min.css",
+              "src/styles.scss",
+              "src/assets/css/style.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/plugins/fontawesome/css/fontawesome.min.css",
+              "src/assets/plugins/fontawesome/css/all.min.css",
+              "src/assets/css/select2.min.css",
+              "src/assets/plugins/datatables/datatables.min.css",
+              "src/assets/css/feather.css",
+              "src/assets/css/bootstrap-datetimepicker.min.css"
+            ],
+            "scripts": [
+              "src/assets/js/jquery-3.7.1.min.js",
+              "src/assets/js/bootstrap.bundle.min.js",
+              "src/assets/js/feather.min.js",
+              "src/assets/js/jquery.slimscroll.js",
+              "src/assets/js/select2.min.js",
+              "src/assets/plugins/datatables/jquery.dataTables.min.js",
+              "src/assets/plugins/datatables/datatables.min.js",
+              "src/assets/js/jquery.waypoints.js",
+              "src/assets/js/jquery.counterup.min.js",
+              "src/assets/plugins/apexchart/apexcharts.min.js",
+              "src/assets/plugins/apexchart/chart-data.js",
+              "src/assets/plugins/moment/moment.min.js",
+              "src/assets/js/bootstrap-datetimepicker.min.js",
+              "src/assets/js/app.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "12mb",
+                  "maximumError": "12mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "12mb",
+                  "maximumError": "12mb"
+                }
+              ],
+              "outputHashing": "all",
+              "sourceMap": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "HOPITAL_FPPN_CLIENT:build:production"
+            },
+            "development": {
+              "browserTarget": "HOPITAL_FPPN_CLIENT:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "HOPITAL_FPPN_CLIENT:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

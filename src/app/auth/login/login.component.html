@@ -1,0 +1,117 @@
+<!-- preload -->
+<app-loader></app-loader>
+<!-- /preload -->
+
+<!-- Main Wrapper -->
+
+<div class="container-fluid px-0">
+  <div class="row">
+    <!-- Login logo -->
+    <!-- <div class="col-lg-6 login-wrap"> -->
+    <!-- <div class="login-sec"> -->
+    <!-- <div class="log-img"> -->
+    <img
+      class=""
+      src="/assets/img/facade_hopital_fppn.jpg"
+      alt="Logo"
+      height="974px"
+    />
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- /Login logo -->
+
+    <!-- Login Content -->
+    <div class="col-lg-6 login-wrap-bg">
+      <div class="login-wrapper">
+        <div class="loginbox">
+          <div class="login-right">
+            <div class="login-right-wrap">
+              <div class="account-logo">
+                <a style="cursor: pointer"
+                  ><img src="/assets/img/logo_fppn_2.png" alt=""
+                /></a>
+              </div>
+              <h2>Login</h2>
+              <!-- Form -->
+              <form action="index.html">
+                <div class="input-block">
+                  <label
+                    >Nom utilisateur <span class="login-danger">*</span></label
+                  >
+                  <input class="form-control" type="text" name="chp_id_login" id="id_login" [(ngModel)]="model_login[0]['valeur']"/>
+                </div>
+                <div class="input-block">
+                  <label
+                    >Mot de passe <span class="login-danger">*</span></label
+                  >
+                  <input
+                    class="form-control pass-input"
+                    [type]="type_input_password"
+                    name="chp_id_mdp"
+                    id="id_mdp"
+                    [(ngModel)]="model_login[1]['valeur']"
+                  />
+                  <span
+                    class="profile-views feather-eye toggle-password"
+                    (click)="VoirCacherMdp()"
+                    [ngClass]="{ 'feather-eye-off': isPasswordVisible }"
+                  ></span>
+                </div>
+                <div class="forgotpass">
+                  <!-- <div class="remember-me">
+                    <label
+                      class="custom_check mr-2 mb-0 d-inline-flex remember-me"
+                    >
+                      Remember me
+                      <input type="checkbox" name="radio" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div> -->
+                  <a
+                    style="cursor: pointer; text-decoration: none"
+                    routerLink="/auth/modifier_mdp"
+                    >Mot de passe oublié ?</a
+                  >
+                </div>
+                <div class="input-block login-btn">
+                  <button
+                    class="btn btn-primary btn-block"
+                    type="submit"
+                    (click)="SeConnecter()"
+                  >
+                    Login
+                  </button>
+                </div>
+              </form>
+              <!-- /Form -->
+
+              <div class="next-sign">
+                <!-- <p class="account-subtitle">
+                  Need an account? <a href="register.html">Sign Up</a>
+                </p> -->
+
+                <!-- Social Login -->
+                <!-- <div class="social-login">
+                  <a href="javascript:;"
+                    ><img src="/assets/img/icons/login-icon-01.svg" alt=""
+                  /></a>
+                  <a href="javascript:;"
+                    ><img src="/assets/img/icons/login-icon-02.svg" alt=""
+                  /></a>
+                  <a href="javascript:;"
+                    ><img src="/assets/img/icons/login-icon-03.svg" alt=""
+                  /></a>
+                </div> -->
+                <!-- /Social Login -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Login Content -->
+  </div>
+</div>
+
+<!-- /Main Wrapper -->

@@ -1,0 +1,391 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div class="main-wrapper">
+  <!-- debut header -->
+  <app-header-menu></app-header-menu>
+  <!-- fin header -->
+
+  <!-- debut sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- fin sidebar -->
+
+  <div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a style="cursor: pointer"
+                  >{{ "param_filigranne_1" | translate }}
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active" style="cursor: pointer">
+                {{ "param_filigranne_9" | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+
+      <!-- debut settings-menu-links -->
+      <app-parametre-menu-link param_actif="active"></app-parametre-menu-link>
+      <!-- fin settings-menu-links -->
+
+      <!-- laaa -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card card-table show-entire">
+            <div class="card-body">
+              <!-- Table Header -->
+              <div class="page-table-header mb-2">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="doctor-table-blk">
+                      <h3>{{ "param_liste_des_param" | translate }}</h3>
+                      <div class="doctor-search-blk">
+                        <div class="top-nav-search table-search-blk">
+                          <form>
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Rechercher ici"
+                            />
+                            <a class="btn"
+                              ><img
+                                src="assets/img/icons/search-normal.svg"
+                                alt=""
+                            /></a>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto text-end float-end ms-auto download-grp">
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+                    /></a>
+                    <a href="javascript:;" class="me-2"
+                      ><img src="assets/img/icons/pdf-icon-03.svg" alt=""
+                    /></a>
+                    <a href="javascript:;"
+                      ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <!-- /Table Header -->
+
+              <div class="table-responsive">
+                <table
+                  class="table border-0 custom-table comman-table datatable mb-0"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="form-check check-tables">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="something"
+                          />
+                        </div>
+                      </th>
+                      <th>{{ "param_libelle" | translate }}</th>
+                      <th>{{ "param_montant_min" | translate }}</th>
+                      <th>{{ "param_montant_max" | translate }}</th>
+                      <th>{{ "param_taux" | translate }}</th>
+                      <th>{{ "param_montant" | translate }}</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-check check-tables">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="something"
+                          />
+                        </div>
+                      </td>
+                      <td class="profile-image">
+                        <a href="profile.html"
+                          ><img
+                            width="28"
+                            height="28"
+                            src="assets/img/profiles/avatar-01.jpg"
+                            class="rounded-circle m-r-5"
+                            alt=""
+                          />
+                          Andrea Lalema</a
+                        >
+                      </td>
+                      <td>Otolaryngology</td>
+                      <td>Infertility</td>
+                      <td>MBBS, MS</td>
+                      <td><a href="javascript:;">+1 23 456890</a></td>
+                      <td class="text-end">
+                        <div class="dropdown dropdown-action">
+                          <a
+                            href="#"
+                            class="action-icon dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            ><i class="fa fa-ellipsis-v"></i
+                          ></a>
+                          <div class="dropdown-menu dropdown-menu-end">
+                            <a
+                              class="dropdown-item"
+                              style="cursor: pointer"
+                              data-bs-toggle="modal"
+                              data-bs-target="#centermodal"
+                              ><i class="fa-solid fa-pen-to-square m-r-5"></i>
+                              Modifier</a
+                            >
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- laaa -->
+    </div>
+    <!-- /Page Content -->
+  </div>
+</div>
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!-- Center modal content -->
+<div
+  class="modal fade"
+  id="centermodal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4> -->
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>{{ "param_details_du_param" | translate }}</h4>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_code" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idCode"
+                          name="nameCode"
+                          [(ngModel)]="model_parametrage[0]['valeur']"
+                          [readOnly]="model_parametrage[0]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_libelle" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idLibelle"
+                          name="nameLibelle"
+                          [(ngModel)]="model_parametrage[1]['valeur']"
+                          [readOnly]="model_parametrage[1]['readOnly']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_montant_min" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idMontantMin"
+                          name="nameMontantMin"
+                          [(ngModel)]="model_parametrage[2]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '2',
+                              model_parametrage
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_montant_max" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idMontantMax"
+                          name="nameMontantMax"
+                          [(ngModel)]="model_parametrage[3]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '3',
+                              model_parametrage
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_taux" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idTaux"
+                          name="nameTaux"
+                          [(ngModel)]="model_parametrage[4]['valeur']"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-6">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_montant" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idMontant"
+                          name="nameMontant"
+                          [(ngModel)]="model_parametrage[5]['valeur']"
+                          (input)="
+                            _toolsService._formatageMontantAlaSaisie(
+                              $event,
+                              '5',
+                              model_parametrage
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_valeur" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idValeur"
+                          name="nameValeur"
+                          [(ngModel)]="model_parametrage[6]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label>{{ "param_num_compte" | translate }} </label>
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          id="idNumCompte"
+                          name="nameNumCompte"
+                          [(ngModel)]="model_parametrage[7]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "param_afficher" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameAfficher"
+                          id="idAfficher"
+                          [(ngModel)]="model_parametrage[8]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option>Oui</option>
+                          <option>Non</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="
+                            EnregistrerParametrage(model_parametrage, [0, 1, 8])
+                          "
+                        >
+                          {{ "btn_enregistrer" | translate }}
+                        </button>
+                        <button
+                          class="btn btn-primary cancel-form"
+                          (click)="AnnulerAction()"
+                        >
+                          {{ "btn_annuler" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

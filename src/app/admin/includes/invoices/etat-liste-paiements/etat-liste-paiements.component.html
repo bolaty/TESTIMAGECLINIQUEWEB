@@ -1,0 +1,96 @@
+<br><br><br><br><br>
+<!-- Table Header -->
+<div class="page-table-header mb-2">
+  <div class="row align-items-center">
+   
+    <div
+      class="col-auto text-end float-end ms-auto download-grp"
+    >
+      <a href="javascript:;" class="me-2"
+      (click)="ImprimerLetat()"
+        ><img src="assets/img/icons/pdf-icon-01.svg" alt=""
+      /></a>
+      <a href="javascript:;" class="me-2"
+      (click)="Export2Word('content','ListePaiement')"
+        ><img src="assets/img/icons/pdf-icon-02.svg" alt=""
+      /></a>
+      <a href="javascript:;"
+      (click)="Export2WordEXCEL('content','ListePaiement')"
+        ><img src="assets/img/icons/pdf-icon-04.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>
+<!-- /Table Header -->
+<div id="content">
+
+  <app-entete-invoice title="LISTE DES PAIEMENTS"></app-entete-invoice>
+
+  <div class="content" #contentBrouillard id="pageGlobale">
+    <div class="container">
+      <table class="table-container">
+        <!-- entete -->
+        <tr>
+          <th>DATE</th>
+          <th>REFERENCE</th>
+          <th>LIBELLE</th>
+          <th>DEBIT</th>
+          <th>CREDIT</th>
+          <th>NOM ASSURE</th>
+          <th>ASSURANCE</th>
+          <th>MODE DE REGLEMENT</th>
+          <th>ACTE</th>
+          <th>OPERATEUR</th>
+        </tr>
+  
+        <!-- section des billets -->
+        <tr>
+          <td>BILLETS</td>
+          <td style="width: 260px"></td>
+          <td style="text-align: end">10 000</td>
+          <td>
+            formulaire_modif_dans_liste[0][ "colonne_du_tableau"
+            ][1]["total_selon_nombre"]
+          </td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+        </tr>
+        <tr>
+          <td>BILLETS</td>
+          <td style="width: 260px"></td>
+          <td style="text-align: end">10 000</td>
+          <td>
+            formulaire_modif_dans_liste[0][ "colonne_du_tableau"
+            ][1]["total_selon_nombre"]
+          </td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+          <td style="text-align: end">10 000</td>
+        </tr>
+  
+        <!-- section des totaux -->
+        <tr class="total-row">
+          <td>Total</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+          <td>total_montant FCFA</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- tableau du billetage -->
+</div>
+

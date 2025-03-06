@@ -1,0 +1,200 @@
+<!-- preload -->
+<app-loader title="l1"></app-loader>
+<!-- /preload -->
+
+<div>
+  <div class="main-wrapper">
+    <!-- debut header -->
+    <app-header-menu></app-header-menu>
+    <!-- fin header -->
+
+    <!-- debut sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- fin sidebar -->
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a style="cursor: pointer"
+                    >{{ "compta_filigranne_1" | translate }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <i class="feather-chevron-right"></i>
+                </li>
+                <li class="breadcrumb-item active">
+                  {{ "compta_filigranne_3" | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>{{ "compta_details_reedition" | translate }}</h4>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-12">
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_mode_reedition" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <select
+                          class="form-control select"
+                          name="nameMode"
+                          id="idMode"
+                          [(ngModel)]="model_reedition[0]['valeur']"
+                        >
+                          <option>Faites un choix</option>
+                          <option
+                            *ngFor="let item of tab_mode"
+                            value="{{ item['code'] }}"
+                          >
+                            {{ item["mode"] }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div
+                      class="col-12 col-md-6 col-xl-6"
+                      *ngIf="
+                        model_reedition[0]['valeur'] == '01' ||
+                        model_reedition[0]['valeur'] == '02' ||
+                        model_reedition[0]['valeur'] == '03'
+                      "
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_num_piece" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameNumPiece"
+                          maxlength="19"
+                          id="idNumPiece"
+                          style="text-transform: uppercase"
+                          autocapitalize="characters"
+                          inputmode="latin"
+                          [(ngModel)]="model_reedition[1]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl-6"
+                      *ngIf="
+                        model_reedition[0]['valeur'] == '01' ||
+                        model_reedition[0]['valeur'] == '02' ||
+                        model_reedition[0]['valeur'] == '03'
+                      "
+                    >
+                      <div class="input-block local-forms cal-icon">
+                        <label
+                          >{{ "compta_date_piece" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control datetimepicker"
+                          [appDatetimepicker]="{
+                            enableTime: false,
+                            dateFormat: 'd/m/Y',
+                            allowInput: true
+                          }"
+                          type="text"
+                          placeholder=""
+                          name="nameDate"
+                          id="idDate"
+                          [(ngModel)]="model_reedition[2]['valeur']"
+                          (input)="_toolsService._saisieAutoDate('idDate')"
+                          maxlength="10"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl-12"
+                      *ngIf="model_reedition[0]['valeur'] == '02'"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_contact" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameContact"
+                          id="idContact"
+                          [(ngModel)]="model_reedition[3]['valeur']"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="col-12 col-md-6 col-xl-12"
+                      *ngIf="model_reedition[0]['valeur'] == '03'"
+                    >
+                      <div class="input-block local-forms">
+                        <label
+                          >{{ "compta_email" | translate }}
+                          <span class="login-danger">*</span></label
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder=""
+                          name="nameEmail"
+                          id="idEmail"
+                          [(ngModel)]="model_reedition[4]['valeur']"
+                          (change)="
+                            _toolsService._emailtoLowerCase(
+                              model_reedition,
+                              '4'
+                            )
+                          "
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                        <button
+                          class="btn btn-primary submit-form me-2"
+                          (click)="ReediterLaPiece(model_reedition, [0])"
+                        >
+                          {{ "btn_enregistrer" | translate }}
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary cancel-form"
+                          (click)="AnnulerAction()"
+                        >
+                          {{ "btn_annuler" | translate }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
