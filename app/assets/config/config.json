@@ -1,0 +1,5 @@
+{
+  "apiBaseUrl": "http://192.168.1.3:6001/api/",
+  "clientName": "Client X",
+  "environment": "production"
+}
